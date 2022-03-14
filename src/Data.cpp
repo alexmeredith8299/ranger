@@ -18,6 +18,14 @@
 #include "Data.h"
 #include "utility.h"
 
+// relevant STB headers
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "stb_image_write.h"
+#define STB_IMAGE_RESIZE_IMPLEMENTATION
+#include "stb_image_resize.h"
+
 namespace ranger {
 
 Data::Data() :
@@ -45,6 +53,8 @@ void Data::addSnpData(unsigned char* snp_data, size_t num_cols_snp) {
 bool Data::loadFromFile(std::string filename, std::vector<std::string>& dependent_variable_names) {
 
   bool result;
+
+  std::cout<<"Filename is: "<<filename<<"\n";
 
   // Open input file
   std::ifstream input_file;
@@ -149,6 +159,22 @@ bool Data::loadFromFileWhitespace(std::ifstream& input_file, std::string header_
   return error;
 }
 
+bool Data::loadFromImg(std::string img_path) {
+  int width, height, channels;
+  // use 0 to have stb figure out components per pixel
+  uint8_t *img = stbi_load(img_path.c_str(), &width, &height, &channels, 0);
+
+  if (img == NULL)
+  {
+      printf("error loading image, reason: %s\n", stbi_failure_reason());
+      exit(1);
+  }
+
+  printf("loaded image of size w, h, c, %i %i %i\n", width, height, channels);
+  stbi_image_free(img);
+  return 1;
+}
+
 bool Data::loadFromFileOther(std::ifstream& input_file, std::string header_line,
     std::vector<std::string>& dependent_variable_names, char seperator) {
 
@@ -219,7 +245,7 @@ void Data::getAllValues(std::vector<double>& all_values, std::vector<size_t>& sa
 
   // All values for varID (no duplicates) for given sampleIDs
   if (getUnpermutedVarID(varID) < num_cols_no_snp) {
-    
+
     all_values.reserve(end - start);
     for (size_t pos = start; pos < end; ++pos) {
       all_values.push_back(get_x(sampleIDs[pos], varID));
@@ -339,4 +365,3 @@ void Data::orderSnpLevels(bool corrected_importance) {
 // #nocov end
 
 } // namespace ranger
-

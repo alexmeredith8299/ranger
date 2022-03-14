@@ -44,6 +44,7 @@ public:
   void addSnpData(unsigned char* snp_data, size_t num_cols_snp);
 
   bool loadFromFile(std::string filename, std::vector<std::string>& dependent_variable_names);
+  bool loadFromImg(std::string img_path);
   bool loadFromFileWhitespace(std::ifstream& input_file, std::string header_line,
       std::vector<std::string>& dependent_variable_names);
   bool loadFromFileOther(std::ifstream& input_file, std::string header_line,
