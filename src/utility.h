@@ -19,10 +19,10 @@
 #include <random>
 #include <unordered_set>
 #include <unordered_map>
-#include <cstddef> 
-#include <memory> 
-#include <type_traits> 
-#include <utility> 
+#include <cstddef>
+#include <memory>
+#include <type_traits>
+#include <utility>
 
 #ifdef R_BUILD
 #include <Rinternals.h>
@@ -554,18 +554,18 @@ template<class T, size_t N> struct _Unique_if<T[N]> {
 } // namespace detail
 
 template<class T, class ... Args>
-typename detail::_Unique_if<T>::_Single_object make_unique(Args&&... args) {
+typename detail::_Unique_if<T>::_Single_object make_unique_ranger(Args&&... args) {
   return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
 }
 
 template<class T>
-typename detail::_Unique_if<T>::_Unknown_bound make_unique(size_t n) {
+typename detail::_Unique_if<T>::_Unknown_bound make_unique_ranger(size_t n) {
   typedef typename std::remove_extent<T>::type U;
   return std::unique_ptr<T>(new U[n]());
 }
 
 template<class T, class ... Args>
-typename detail::_Unique_if<T>::_Known_bound make_unique(Args&&...) = delete;
+typename detail::_Unique_if<T>::_Known_bound make_unique_ranger(Args&&...) = delete;
 
 }
 // namespace ranger

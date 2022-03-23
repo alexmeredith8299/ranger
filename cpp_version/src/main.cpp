@@ -33,19 +33,19 @@ void run_ranger(const ArgumentHandler& arg_handler, std::ostream& verbose_out) {
   switch (arg_handler.treetype) {
   case TREE_CLASSIFICATION:
     if (arg_handler.probability) {
-      forest = make_unique<ForestProbability>();
+      forest = make_unique_ranger<ForestProbability>();
     } else {
-      forest = make_unique<ForestClassification>();
+      forest = make_unique_ranger<ForestClassification>();
     }
     break;
   case TREE_REGRESSION:
-    forest = make_unique<ForestRegression>();
+    forest = make_unique_ranger<ForestRegression>();
     break;
   case TREE_SURVIVAL:
-    forest = make_unique<ForestSurvival>();
+    forest = make_unique_ranger<ForestSurvival>();
     break;
   case TREE_PROBABILITY:
-    forest = make_unique<ForestProbability>();
+    forest = make_unique_ranger<ForestProbability>();
     break;
   }
 
