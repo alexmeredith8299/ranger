@@ -942,6 +942,7 @@ std::unique_ptr<Data> Forest::loadDataFromFile(const std::string& data_path) {
     *verbose_out << "Warning: Rounding or Integer overflow occurred. Use FLOAT or DOUBLE precision to avoid this."
         << std::endl;
   }
+  std::cout<<result;
   return result;
 }
 // #nocov end
