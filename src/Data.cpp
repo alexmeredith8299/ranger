@@ -54,7 +54,7 @@ bool Data::loadFromFile(std::string filename, std::vector<std::string>& dependen
 
   bool result;
 
-  std::cout<<"Filename is: "<<filename<<"\n";
+  //std::cout<<"Filename is: "<<filename<<"\n";
 
   // Open input file
   std::ifstream input_file;
