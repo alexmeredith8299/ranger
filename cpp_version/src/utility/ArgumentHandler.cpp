@@ -17,6 +17,10 @@
 #include "version.h"
 #include "utility.h"
 
+// relevant STB headers
+//#define STB_IMAGE_IMPLEMENTATION
+#include "stb_image.h"
+
 namespace ranger {
 
 ArgumentHandler::ArgumentHandler(int argc, char **argv) :
@@ -33,7 +37,7 @@ ArgumentHandler::ArgumentHandler(int argc, char **argv) :
 int ArgumentHandler::processArguments() {
 
   // short options
-  char const *short_options = "A:C:D:F:HM:NOP:Q:R:S:U:XZa:b:c:d:e:f:hi:j:kl:m:o:pr:s:t:uvwy:z:";
+  char const *short_options = "A:C:D:F:HM:NOP:Q:R:S:U:WXZa:b:c:d:e:f:hi:j:kl:m:o:pr:s:t:uvwy:z:";
 
 // long options: longname, no/optional/required argument?, flag(not used!), shortname
     const struct option long_options[] = {
@@ -51,6 +55,7 @@ int ArgumentHandler::processArguments() {
       { "randomsplits",         required_argument,  0, 'R'},
       { "splitweights",         required_argument,  0, 'S'},
       { "nthreads",             required_argument,  0, 'U'},
+      { "writetoimg",           no_argument,        0, 'W'},
       { "predall",              no_argument,        0, 'X'},
       { "version",              no_argument,        0, 'Z'},
 
@@ -192,6 +197,10 @@ int ArgumentHandler::processArguments() {
         throw std::runtime_error(
             "Illegal argument for option 'nthreads'. Please give a positive integer. See '--help' for details.");
       }
+      break;
+
+    case 'W':
+      writetoimg = true;
       break;
 
     case 'X':
@@ -442,6 +451,30 @@ void ArgumentHandler::checkArguments() {
     throw std::runtime_error("Please specify a dependent variable name with '--depvarname'. See '--help' for details.");
   }
 
+  if(file.substr(file.find_last_of(".") + 1) == "jpeg" || file.substr(file.find_last_of(".") + 1) == "png") {
+    int width;
+    int height;
+    int channels;
+    uint8_t *img = stbi_load(file.c_str(), &width, &height, &channels, 0);
+    //Catch STB errors
+    if (img == NULL)
+    {
+        printf("error loading image, reason: %s\n", stbi_failure_reason());
+        exit(1);
+    }
+    imgheight = height;
+    imgwidth = width;
+    //Free image
+    stbi_image_free(img);
+  } else {
+    imgheight = 0;
+    imgwidth = 0;
+  }
+  if(writetoimg) {
+    if(! (file.substr(file.find_last_of(".") + 1) == "jpeg") && ! (file.substr(file.find_last_of(".") + 1) == "png")) {
+      throw std::runtime_error("Writing to an image requires an image input. Please specify an image filename with '--file'. See '--help' for details.");
+    }
+  }
   //TODO: improve this so that we make sure files are readable and mask is same size as img.
   if (predict.empty() && mask.empty()) {
     if(file.substr(file.find_last_of(".") + 1) == "jpeg" || file.substr(file.find_last_of(".") + 1) == "png") {
@@ -614,6 +647,9 @@ void ArgumentHandler::displayHelp() {
       << std::endl;
   std::cout << "    "
       << "                              shape as the training data. If the outcome of your new dataset is unknown, add a dummy column."
+      << std::endl;
+  std::cout << "    "
+      << "--writetoimg                  Save predictions to ranger_out.jpeg instead of ranger_out.prediction. Does not work with --predall."
       << std::endl;
   std::cout << "    "
       << "--predall                     Return a matrix with individual predictions for each tree instead of aggregated "

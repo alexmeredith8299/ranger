@@ -888,7 +888,9 @@ CMakeFiles/ranger.dir/src/Forest/ForestClassification.o: ../src/Forest/ForestCla
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/thread \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/condition_variable \
   ../src/Tree/Tree.h \
-  ../src/Tree/TreeClassification.h
+  ../src/Tree/TreeClassification.h \
+  ../src/utility/stb_image.h \
+  ../src/utility/stb_image_write.h
 
 CMakeFiles/ranger.dir/src/Forest/ForestProbability.o: ../src/Forest/ForestProbability.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/stdexcept \
@@ -5324,7 +5326,8 @@ CMakeFiles/ranger.dir/src/utility/ArgumentHandler.o: ../src/utility/ArgumentHand
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__node_handle \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/optional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/unordered_map \
-  ../src/utility/Data.h
+  ../src/utility/Data.h \
+  ../src/utility/stb_image.h
 
 CMakeFiles/ranger.dir/src/utility/Data.o: ../src/utility/Data.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/fstream \
@@ -6212,8 +6215,6 @@ CMakeFiles/ranger.dir/src/utility/utility.o: ../src/utility/utility.cpp \
 
 ../src/utility/utility.cpp:
 
-../src/utility/stb_image_write.h:
-
 /Library/Developer/CommandLineTools/usr/lib/clang/13.1.6/include/mm_malloc.h:
 
 /Library/Developer/CommandLineTools/usr/lib/clang/13.1.6/include/xmmintrin.h:
@@ -6251,6 +6252,8 @@ CMakeFiles/ranger.dir/src/utility/utility.o: ../src/utility/utility.cpp \
 ../src/Forest/ForestProbability.h:
 
 ../src/Forest/ForestProbability.cpp:
+
+../src/utility/stb_image_write.h:
 
 ../src/Forest/ForestClassification.h:
 

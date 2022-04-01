@@ -440,4 +440,6 @@ CMakeFiles/ranger.dir/src/Forest/ForestRegression.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/thread \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/condition_variable \
   /Users/alexmeredith/ranger/cpp_version/src/Tree/Tree.h \
-  /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeRegression.h
+  /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeRegression.h \
+  /Users/alexmeredith/ranger/cpp_version/src/utility/stb_image.h \
+  /Users/alexmeredith/ranger/cpp_version/src/utility/stb_image_write.h

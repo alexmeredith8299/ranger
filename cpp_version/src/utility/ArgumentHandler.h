@@ -69,6 +69,8 @@ public:
   std::vector<std::string> catvars;
   uint maxdepth;
   std::string file;
+  uint imgheight;
+  uint imgwidth;
   std::string mask;
   ImportanceMode impmeasure;
   uint targetpartitionsize;
@@ -80,6 +82,7 @@ public:
   uint ntree;
   bool replace;
   bool verbose;
+  bool writetoimg;
   bool write;
   TreeType treetype;
   uint seed;

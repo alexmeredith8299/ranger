@@ -46,7 +46,12 @@ void Forest::initCpp(std::string dependent_variable_name, MemoryMode memory_mode
     const std::vector<std::string>& unordered_variable_names, bool memory_saving_splitting, SplitRule splitrule,
     std::string case_weights_file, bool predict_all, double sample_fraction, double alpha, double minprop, bool holdout,
     PredictionType prediction_type, uint num_random_splits, uint max_depth,
-    const std::vector<double>& regularization_factor, bool regularization_usedepth) {
+    const std::vector<double>& regularization_factor, bool regularization_usedepth,
+    bool write_to_img, size_t img_width, size_t img_height) {
+
+  this->write_to_img = write_to_img;
+  this->img_width = img_width;
+  this->img_height = img_height;
 
   this->memory_mode = memory_mode;
   this->verbose_out = verbose_out;
@@ -336,7 +341,11 @@ void Forest::writeOutput() {
   }
 
   if (prediction_mode) {
-    writePredictionFile();
+    if(write_to_img) {
+      writeImageMask();
+    } else {
+      writePredictionFile();
+    }
   } else {
     if (verbose_out) {
       *verbose_out << "Overall OOB prediction error:      " << overall_prediction_error << std::endl;

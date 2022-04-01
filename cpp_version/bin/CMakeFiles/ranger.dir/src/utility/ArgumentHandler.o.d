@@ -445,4 +445,5 @@ CMakeFiles/ranger.dir/src/utility/ArgumentHandler.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__node_handle \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/optional \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/unordered_map \
-  /Users/alexmeredith/ranger/cpp_version/src/utility/Data.h
+  /Users/alexmeredith/ranger/cpp_version/src/utility/Data.h \
+  /Users/alexmeredith/ranger/cpp_version/src/utility/stb_image.h

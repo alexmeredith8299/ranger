@@ -48,7 +48,8 @@ public:
       const std::vector<std::string>& unordered_variable_names, bool memory_saving_splitting, SplitRule splitrule,
       std::string case_weights_file, bool predict_all, double sample_fraction, double alpha, double minprop,
       bool holdout, PredictionType prediction_type, uint num_random_splits, uint max_depth,
-      const std::vector<double>& regularization_factor, bool regularization_usedepth);
+      const std::vector<double>& regularization_factor, bool regularization_usedepth,
+      bool write_to_img, size_t img_width, size_t img_height);
   void initR(std::unique_ptr<Data> input_data, uint mtry, uint num_trees, std::ostream* verbose_out, uint seed,
       uint num_threads, ImportanceMode importance_mode, uint min_node_size,
       std::vector<std::vector<double>>& split_select_weights,
@@ -74,6 +75,7 @@ public:
   virtual void writeOutputInternal() = 0;
   virtual void writeConfusionFile() = 0;
   virtual void writePredictionFile() = 0;
+  virtual void writeImageMask() = 0;
   void writeImportanceFile();
 
   // Save forest to file
@@ -219,6 +221,9 @@ protected:
 
   std::vector<std::unique_ptr<Tree>> trees;
   std::unique_ptr<Data> data;
+  bool write_to_img;
+  size_t img_width;
+  size_t img_height;
 
   std::vector<std::vector<std::vector<double>>> predictions;
   double overall_prediction_error;

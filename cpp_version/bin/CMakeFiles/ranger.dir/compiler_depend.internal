@@ -891,6 +891,8 @@ CMakeFiles/ranger.dir/src/Forest/ForestClassification.o
  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/condition_variable
  /Users/alexmeredith/ranger/cpp_version/src/Tree/Tree.h
  /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeClassification.h
+ /Users/alexmeredith/ranger/cpp_version/src/utility/stb_image.h
+ /Users/alexmeredith/ranger/cpp_version/src/utility/stb_image_write.h
 
 CMakeFiles/ranger.dir/src/Forest/ForestProbability.o
  /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestProbability.cpp
@@ -5337,6 +5339,7 @@ CMakeFiles/ranger.dir/src/utility/ArgumentHandler.o
  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/optional
  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/unordered_map
  /Users/alexmeredith/ranger/cpp_version/src/utility/Data.h
+ /Users/alexmeredith/ranger/cpp_version/src/utility/stb_image.h
 
 CMakeFiles/ranger.dir/src/utility/Data.o
  /Users/alexmeredith/ranger/cpp_version/src/utility/Data.cpp

@@ -284,7 +284,6 @@ bool Data::loadFromImg(std::string img_path, std::string mask_path) {
 
 bool Data::loadFromFileOther(std::ifstream& input_file, std::string header_line,
     std::vector<std::string>& dependent_variable_names, char seperator) {
-  std::cout<<"in loadfromfileother \n";
   size_t num_dependent_variables = dependent_variable_names.size();
   std::vector<size_t> dependent_varIDs;
   dependent_varIDs.resize(num_dependent_variables);
@@ -299,7 +298,6 @@ bool Data::loadFromFileOther(std::ifstream& input_file, std::string header_line,
       if (header_token == dependent_variable_names[i]) {
         dependent_varIDs[i] = col;
         is_dependent_var = true;
-        std::cout<<"header token "<<header_token<<"\n";
       }
     }
     if (!is_dependent_var) {

@@ -17,6 +17,8 @@
 #include "ForestRegression.h"
 #include "TreeRegression.h"
 #include "Data.h"
+#include "stb_image.h"
+#include "stb_image_write.h"
 
 namespace ranger {
 
@@ -164,6 +166,37 @@ void ForestRegression::writeConfusionFile() {
   outfile.close();
   if (verbose_out)
     *verbose_out << "Saved prediction error to file " << filename << "." << std::endl;
+}
+
+void ForestRegression::writeImageMask() {
+  //TODO make this work with predall
+
+  //TODO make this work with regression trees if there is anything
+  //special about them
+
+  //Set 3 channels, get image size from class variables
+  int channels = 3;
+  int img_memory = sizeof(uint8_t) * img_width*img_height * channels;
+  uint8_t *cloud_mask_out = (uint8_t *)malloc(img_memory);
+  std::string img_path = output_prefix + ".png";
+  const char* img_outpath = img_path.c_str();
+
+  //Fill in image with 255 or 0
+  for (size_t i = 0; i < predictions.size(); ++i) {
+    for (size_t j = 0; j < predictions[i].size(); ++j) {
+      for (size_t k = 0; k < predictions[i][j].size(); ++k) {
+        int val = predictions[i][j][k];
+        int idx = channels*k;
+        cloud_mask_out[idx] = std::round(val*255);
+        cloud_mask_out[idx+1] = std::round(val*255);
+        cloud_mask_out[idx+2] = std::round(val*255);
+      }
+    }
+  }
+
+  //Write image as png and free image
+  stbi_write_png(img_outpath, img_width, img_height, channels, cloud_mask_out, img_width * channels);
+  stbi_image_free(cloud_mask_out);
 }
 
 void ForestRegression::writePredictionFile() {

@@ -17,5 +17,5 @@ cp ranger_out.prediction csv_ranger_out.csv
 #test rf
 echo "Testing ranger model with an img input..."
 rm -rf ranger_out.prediction
-./cpp_version/bin/ranger --file samples/img_msec_1597559030639_2_thumbnail.jpeg --mask samples/img_msec_1597559030639_2_thumbnail.jpeg --predict ranger_out.forest
+./cpp_version/bin/ranger --file samples/img_msec_1597559030639_2_thumbnail.jpeg --mask samples/img_msec_1597559030639_2_thumbnail.jpeg --predict ranger_out.forest --writetoimg
 cp ranger_out.prediction img_ranger_out.csv

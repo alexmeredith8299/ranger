@@ -21,6 +21,8 @@
 #include "ForestClassification.h"
 #include "TreeClassification.h"
 #include "Data.h"
+#include "stb_image.h"
+#include "stb_image_write.h"
 
 namespace ranger {
 
@@ -232,6 +234,40 @@ void ForestClassification::writeConfusionFile() {
     *verbose_out << "Saved confusion matrix to file " << filename << "." << std::endl;
 }
 
+void ForestClassification::writeImageMask() {
+  //TODO make this work with predall
+
+  //Set 3 channels, get image size from class variables
+  int channels = 3;
+  int img_memory = sizeof(uint8_t) * img_width*img_height * channels;
+  uint8_t *cloud_mask_out = (uint8_t *)malloc(img_memory);
+  std::string img_path = output_prefix + ".png";
+  const char* img_outpath = img_path.c_str();
+
+  //Fill in image with 255 or 0
+  for (size_t i = 0; i < predictions.size(); ++i) {
+    for (size_t j = 0; j < predictions[i].size(); ++j) {
+      for (size_t k = 0; k < predictions[i][j].size(); ++k) {
+        int val = predictions[i][j][k];
+        int idx = channels*k;
+        if (val == 1) {
+            cloud_mask_out[idx] = 255;
+            cloud_mask_out[idx+1] = 255;
+            cloud_mask_out[idx+2] = 255;
+        } else {
+            cloud_mask_out[idx] = 0;
+            cloud_mask_out[idx+1] = 0;
+            cloud_mask_out[idx+2] = 0;
+        }
+      }
+    }
+  }
+
+  //Write image as png and free image
+  stbi_write_png(img_outpath, img_width, img_height, channels, cloud_mask_out, img_width * channels);
+  stbi_image_free(cloud_mask_out);
+}
+
 void ForestClassification::writePredictionFile() {
 
   // Open prediction file for writing
@@ -241,7 +277,6 @@ void ForestClassification::writePredictionFile() {
   if (!outfile.good()) {
     throw std::runtime_error("Could not write to prediction file: " + filename + ".");
   }
-
   // Write
   outfile << "Predictions: " << std::endl;
   if (predict_all) {

@@ -55,6 +55,7 @@ protected:
   void writeOutputInternal() override;
   void writeConfusionFile() override;
   void writePredictionFile() override;
+  void writeImageMask() override;
   void saveToFileInternal(std::ofstream& outfile) override;
   void loadFromFileInternal(std::ifstream& infile) override;
 
