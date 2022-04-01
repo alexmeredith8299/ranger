@@ -50,11 +50,9 @@ void Data::addSnpData(unsigned char* snp_data, size_t num_cols_snp) {
 // #nocov end
 
 // #nocov start
-bool Data::loadFromFile(std::string filename, std::string eval_filename, std::vector<std::string>& dependent_variable_names) {
+bool Data::loadFromFile(std::string filename, std::string mask_filename, std::vector<std::string>& dependent_variable_names) {
 
   bool result;
-
-  std::cout<<"eval filename "<<eval_filename<<"\n";
 
   // Open input file
   std::ifstream input_file;
@@ -69,7 +67,7 @@ bool Data::loadFromFile(std::string filename, std::string eval_filename, std::ve
     input_file.close();
     //Debug print + load from img
     std::cout << "File is a jpeg or png..." << std::endl;
-    result = loadFromImg(filename);
+    result = loadFromImg(filename, mask_filename);
     return result;
   } else { //For csvs
     //Same code as ranger repo that I forked this from. So it should still work for csvs.
@@ -170,7 +168,7 @@ bool Data::loadFromFileWhitespace(std::ifstream& input_file, std::string header_
   return error;
 }
 
-bool Data::loadFromImg(std::string img_path) {
+bool Data::loadFromImg(std::string img_path, std::string mask_path) {
   int width, height, channels;
   // use 0 to have stb figure out components per pixel
   uint8_t *img = stbi_load(img_path.c_str(), &width, &height, &channels, 0);

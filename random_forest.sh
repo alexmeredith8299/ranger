@@ -10,6 +10,8 @@ echo "Testing ranger model with a csv input..."
 #write cloud mask
 echo "Training ranger model with an img input..."
 ./cpp_version/bin/ranger --file samples/img_msec_1597559030639_2_thumbnail.jpeg --mask samples/img_msec_1597559030639_2_thumbnail.jpeg --depvarname CLOUD --treetype 1 --ntree 10 --write
+echo "Training ranger model with an img input and no mask..."
+./cpp_version/bin/ranger --file samples/img_msec_1597559030639_2_thumbnail.jpeg --depvarname CLOUD --treetype 1 --ntree 10 --write
 #test rf
 echo "Testing ranger model with an img input..."
 ./cpp_version/bin/ranger --file samples/img_msec_1597559030639_2_thumbnail.jpeg --predict ranger_out.forest

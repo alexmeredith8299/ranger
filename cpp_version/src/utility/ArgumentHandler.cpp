@@ -442,6 +442,12 @@ void ArgumentHandler::checkArguments() {
     throw std::runtime_error("Please specify a dependent variable name with '--depvarname'. See '--help' for details.");
   }
 
+  if (predict.empty() && mask.empty()) {
+    if(file.substr(file.find_last_of(".") + 1) == "jpeg" || file.substr(file.find_last_of(".") + 1) == "png") {
+      throw std::runtime_error("Training on images requires a mask. Please specify a mask filename with '--mask'. See '--help' for details.");
+    }
+  }
+
   if (predict.empty() && treetype == TREE_SURVIVAL && statusvarname.empty()) {
     throw std::runtime_error("Please specify a status variable name with '--statusvarname'. See '--help' for details.");
   }
@@ -556,7 +562,7 @@ void ArgumentHandler::displayHelp() {
   std::cout << "    " << "--verbose                     Turn on verbose mode." << std::endl;
   std::cout << "    " << "--file FILE                   Filename of input data. Only numerical values and images are supported."
       << std::endl;
-  std::cout << "    " << "--mask FILE                   Filename of mask of independent variable to go with input data. Only images are supported."
+  std::cout << "    " << "--mask FILE                   Filename of image mask (used when training on images). Only images are supported."
       << std::endl;
   std::cout << "    " << "--treetype TYPE               Set tree type to:" << std::endl;
   std::cout << "    " << "                              TYPE = 1: Classification." << std::endl;
