@@ -23,7 +23,7 @@ ArgumentHandler::ArgumentHandler(int argc, char **argv) :
     caseweights(""), depvarname(""), fraction(0), holdout(false), memmode(MEM_DOUBLE), savemem(false), skipoob(false), predict(
         ""), predictiontype(DEFAULT_PREDICTIONTYPE), randomsplits(DEFAULT_NUM_RANDOM_SPLITS), splitweights(""), nthreads(
         DEFAULT_NUM_THREADS), predall(false), alpha(DEFAULT_ALPHA), minprop(DEFAULT_MINPROP), maxdepth(
-        DEFAULT_MAXDEPTH), file(""), impmeasure(DEFAULT_IMPORTANCE_MODE), targetpartitionsize(0), mtry(0), outprefix(
+        DEFAULT_MAXDEPTH), file(""), mask(""), impmeasure(DEFAULT_IMPORTANCE_MODE), targetpartitionsize(0), mtry(0), outprefix(
         "ranger_out"), probability(false), splitrule(DEFAULT_SPLITRULE), statusvarname(""), ntree(DEFAULT_NUM_TREE), replace(
         true), verbose(false), write(false), treetype(TREE_CLASSIFICATION), seed(0), usedepth(false) {
   this->argc = argc;
@@ -33,7 +33,7 @@ ArgumentHandler::ArgumentHandler(int argc, char **argv) :
 int ArgumentHandler::processArguments() {
 
   // short options
-  char const *short_options = "A:C:D:F:HM:NOP:Q:R:S:U:XZa:b:c:d:f:hi:j:kl:m:o:pr:s:t:uvwy:z:";
+  char const *short_options = "A:C:D:F:HM:NOP:Q:R:S:U:XZa:b:c:d:e:f:hi:j:kl:m:o:pr:s:t:uvwy:z:";
 
 // long options: longname, no/optional/required argument?, flag(not used!), shortname
     const struct option long_options[] = {
@@ -58,6 +58,7 @@ int ArgumentHandler::processArguments() {
       { "minprop",              required_argument,  0, 'b'},
       { "catvars",              required_argument,  0, 'c'},
       { "maxdepth",             required_argument,  0, 'd'},
+      { "mask",                 required_argument,  0, 'e'},
       { "file",                 required_argument,  0, 'f'},
       { "help",                 no_argument,        0, 'h'},
       { "impmeasure",           required_argument,  0, 'i'},
@@ -247,6 +248,10 @@ int ArgumentHandler::processArguments() {
         throw std::runtime_error(
             "Illegal argument for option 'maxdepth'. Please give a positive integer. See '--help' for details.");
       }
+      break;
+
+    case 'e':
+      mask = optarg;
       break;
 
     case 'f':
@@ -549,7 +554,9 @@ void ArgumentHandler::displayHelp() {
   std::cout << "    " << "--help                        Print this help." << std::endl;
   std::cout << "    " << "--version                     Print version and citation information." << std::endl;
   std::cout << "    " << "--verbose                     Turn on verbose mode." << std::endl;
-  std::cout << "    " << "--file FILE                   Filename of input data. Only numerical values are supported."
+  std::cout << "    " << "--file FILE                   Filename of input data. Only numerical values and images are supported."
+      << std::endl;
+  std::cout << "    " << "--mask FILE                   Filename of mask of independent variable to go with input data. Only images are supported."
       << std::endl;
   std::cout << "    " << "--treetype TYPE               Set tree type to:" << std::endl;
   std::cout << "    " << "                              TYPE = 1: Classification." << std::endl;

@@ -50,11 +50,11 @@ void Data::addSnpData(unsigned char* snp_data, size_t num_cols_snp) {
 // #nocov end
 
 // #nocov start
-bool Data::loadFromFile(std::string filename, std::vector<std::string>& dependent_variable_names) {
+bool Data::loadFromFile(std::string filename, std::string eval_filename, std::vector<std::string>& dependent_variable_names) {
 
   bool result;
 
-  //std::cout<<"Filename is: "<<filename<<"\n";
+  std::cout<<"eval filename "<<eval_filename<<"\n";
 
   // Open input file
   std::ifstream input_file;
@@ -63,37 +63,48 @@ bool Data::loadFromFile(std::string filename, std::vector<std::string>& dependen
     throw std::runtime_error("Could not open input file.");
   }
 
-  // Count number of rows
-  size_t line_count = 0;
-  std::string line;
-  while (getline(input_file, line)) {
-    ++line_count;
+  //For jpegs and pngs
+  if(filename.substr(filename.find_last_of(".") + 1) == "jpeg" || filename.substr(filename.find_last_of(".") + 1) == "png") {
+    //Close file (we will reopen with stb)
+    input_file.close();
+    //Debug print + load from img
+    std::cout << "File is a jpeg or png..." << std::endl;
+    result = loadFromImg(filename);
+    return result;
+  } else { //For csvs
+    //Same code as ranger repo that I forked this from. So it should still work for csvs.
+    std::cout << "File is not a jpeg or png..." << std::endl;
+    // Count number of rows
+    size_t line_count = 0;
+    std::string line;
+    while (getline(input_file, line)) {
+      ++line_count;
+    }
+    num_rows = line_count - 1;
+    input_file.close();
+    input_file.open(filename);
+
+    // Check if comma, semicolon or whitespace seperated
+    std::string header_line;
+    getline(input_file, header_line);
+
+    // Find out if comma, semicolon or whitespace seperated and call appropriate method
+    if (header_line.find(',') != std::string::npos) {
+      result = loadFromFileOther(input_file, header_line, dependent_variable_names, ',');
+    } else if (header_line.find(';') != std::string::npos) {
+      result = loadFromFileOther(input_file, header_line, dependent_variable_names, ';');
+    } else {
+      result = loadFromFileWhitespace(input_file, header_line, dependent_variable_names);
+    }
+
+    externalData = false;
+    input_file.close();
+    return result;
   }
-  num_rows = line_count - 1;
-  input_file.close();
-  input_file.open(filename);
-
-  // Check if comma, semicolon or whitespace seperated
-  std::string header_line;
-  getline(input_file, header_line);
-
-  // Find out if comma, semicolon or whitespace seperated and call appropriate method
-  if (header_line.find(',') != std::string::npos) {
-    result = loadFromFileOther(input_file, header_line, dependent_variable_names, ',');
-  } else if (header_line.find(';') != std::string::npos) {
-    result = loadFromFileOther(input_file, header_line, dependent_variable_names, ';');
-  } else {
-    result = loadFromFileWhitespace(input_file, header_line, dependent_variable_names);
-  }
-
-  externalData = false;
-  input_file.close();
-  return result;
 }
 
 bool Data::loadFromFileWhitespace(std::ifstream& input_file, std::string header_line,
     std::vector<std::string>& dependent_variable_names) {
-
   size_t num_dependent_variables = dependent_variable_names.size();
   std::vector<size_t> dependent_varIDs;
   dependent_varIDs.resize(num_dependent_variables);
@@ -172,12 +183,16 @@ bool Data::loadFromImg(std::string img_path) {
 
   printf("loaded image of size w, h, c, %i %i %i\n", width, height, channels);
   stbi_image_free(img);
+
+  throw std::runtime_error(
+      std::string("Load from image not yet implemented"));
+
   return 1;
 }
 
 bool Data::loadFromFileOther(std::ifstream& input_file, std::string header_line,
     std::vector<std::string>& dependent_variable_names, char seperator) {
-
+  std::cout<<"in loadfromfileother \n";
   size_t num_dependent_variables = dependent_variable_names.size();
   std::vector<size_t> dependent_varIDs;
   dependent_varIDs.resize(num_dependent_variables);
@@ -192,6 +207,7 @@ bool Data::loadFromFileOther(std::ifstream& input_file, std::string header_line,
       if (header_token == dependent_variable_names[i]) {
         dependent_varIDs[i] = col;
         is_dependent_var = true;
+        std::cout<<"header token "<<header_token<<"\n";
       }
     }
     if (!is_dependent_var) {
@@ -222,6 +238,7 @@ bool Data::loadFromFileOther(std::ifstream& input_file, std::string header_line,
       for (size_t i = 0; i < dependent_varIDs.size(); ++i) {
         if (column == dependent_varIDs[i]) {
           set_y(i, row, token, error);
+          //std::cout<<"setting y with i="<<i<<", row="<<row<<", token="<<token<<"\n";
           is_dependent_var = true;
           break;
         } else if (column > dependent_varIDs[i]) {
@@ -230,6 +247,7 @@ bool Data::loadFromFileOther(std::ifstream& input_file, std::string header_line,
       }
       if (!is_dependent_var) {
         set_x(column_x, row, token, error);
+        //std::cout<<"setting x with column_x="<<column_x<<", row="<<row<<", token="<<token<<"\n";
       }
       ++column;
     }

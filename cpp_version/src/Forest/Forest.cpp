@@ -38,8 +38,8 @@ Forest::Forest() :
 }
 
 // #nocov start
-void Forest::initCpp(std::string dependent_variable_name, MemoryMode memory_mode, std::string input_file, uint mtry,
-    std::string output_prefix, uint num_trees, std::ostream* verbose_out, uint seed, uint num_threads,
+void Forest::initCpp(std::string dependent_variable_name, MemoryMode memory_mode, std::string input_file, std::string evaluation_file,
+    uint mtry, std::string output_prefix, uint num_trees, std::ostream* verbose_out, uint seed, uint num_threads,
     std::string load_forest_filename, ImportanceMode importance_mode, uint min_node_size,
     std::string split_select_weights_file, const std::vector<std::string>& always_split_variable_names,
     std::string status_variable_name, bool sample_with_replacement,
@@ -80,7 +80,7 @@ void Forest::initCpp(std::string dependent_variable_name, MemoryMode memory_mode
   }
 
   // Call other init function
-  init(loadDataFromFile(input_file), mtry, output_prefix, num_trees, seed, num_threads, importance_mode,
+  init(loadDataFromFile(input_file, evaluation_file), mtry, output_prefix, num_trees, seed, num_threads, importance_mode,
       min_node_size, prediction_mode, sample_with_replacement, unordered_variable_names, memory_saving_splitting,
       splitrule, predict_all, sample_fraction_vector, alpha, minprop, holdout, prediction_type, num_random_splits,
       false, max_depth, regularization_factor, regularization_usedepth);
@@ -921,7 +921,7 @@ void Forest::loadDependentVariableNamesFromFile(std::string filename) {
   infile.close();
 }
 
-std::unique_ptr<Data> Forest::loadDataFromFile(const std::string& data_path) {
+std::unique_ptr<Data> Forest::loadDataFromFile(const std::string& data_path, const std::string& evaldata_path) {
   std::unique_ptr<Data> result { };
   switch (memory_mode) {
   case MEM_DOUBLE:
@@ -937,7 +937,7 @@ std::unique_ptr<Data> Forest::loadDataFromFile(const std::string& data_path) {
 
   if (verbose_out)
     *verbose_out << "Loading input file: " << data_path << "." << std::endl;
-  bool found_rounding_error = result->loadFromFile(data_path, dependent_variable_names);
+  bool found_rounding_error = result->loadFromFile(data_path, evaldata_path, dependent_variable_names);
   if (found_rounding_error && verbose_out) {
     *verbose_out << "Warning: Rounding or Integer overflow occurred. Use FLOAT or DOUBLE precision to avoid this."
         << std::endl;

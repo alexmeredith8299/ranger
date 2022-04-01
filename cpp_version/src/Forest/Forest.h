@@ -40,8 +40,8 @@ public:
   virtual ~Forest() = default;
 
   // Init from c++ main or Rcpp from R
-  void initCpp(std::string dependent_variable_name, MemoryMode memory_mode, std::string input_file, uint mtry,
-      std::string output_prefix, uint num_trees, std::ostream* verbose_out, uint seed, uint num_threads,
+  void initCpp(std::string dependent_variable_name, MemoryMode memory_mode, std::string input_file, std::string eval_file,
+      uint mtry, std::string output_prefix, uint num_trees, std::ostream* verbose_out, uint seed, uint num_threads,
       std::string load_forest_filename, ImportanceMode importance_mode, uint min_node_size,
       std::string split_select_weights_file, const std::vector<std::string>& always_split_variable_names,
       std::string status_variable_name, bool sample_with_replacement,
@@ -169,7 +169,7 @@ protected:
   void loadDependentVariableNamesFromFile(std::string filename);
 
   // Load data from file
-  std::unique_ptr<Data> loadDataFromFile(const std::string& data_path);
+  std::unique_ptr<Data> loadDataFromFile(const std::string& data_path, const std::string& evaldata_path);
 
   // Set split select weights and variables to be always considered for splitting
   void setSplitWeightVector(std::vector<std::vector<double>>& split_select_weights);
@@ -244,7 +244,7 @@ protected:
   std::vector<double> regularization_factor;
   bool regularization_usedepth;
   std::vector<bool> split_varIDs_used;
-  
+
   // Variable importance for all variables in forest
   std::vector<double> variable_importance;
 

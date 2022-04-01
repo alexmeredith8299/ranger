@@ -69,6 +69,7 @@ public:
   std::vector<std::string> catvars;
   uint maxdepth;
   std::string file;
+  std::string mask;
   ImportanceMode impmeasure;
   uint targetpartitionsize;
   uint mtry;
