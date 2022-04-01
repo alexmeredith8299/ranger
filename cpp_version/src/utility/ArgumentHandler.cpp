@@ -442,6 +442,7 @@ void ArgumentHandler::checkArguments() {
     throw std::runtime_error("Please specify a dependent variable name with '--depvarname'. See '--help' for details.");
   }
 
+  //TODO: improve this so that we make sure files are readable and mask is same size as img.
   if (predict.empty() && mask.empty()) {
     if(file.substr(file.find_last_of(".") + 1) == "jpeg" || file.substr(file.find_last_of(".") + 1) == "png") {
       throw std::runtime_error("Training on images requires a mask. Please specify a mask filename with '--mask'. See '--help' for details.");

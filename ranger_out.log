@@ -1,2 +1,20 @@
 Starting Ranger.
 Loading input file: samples/img_msec_1597559030639_2_thumbnail.jpeg.
+Warning: Rounding or Integer overflow occurred. Use FLOAT or DOUBLE precision to avoid this.
+Loading forest from file ranger_out.forest.
+Predicting ..
+
+Tree type:                         Classification
+Dependent variable name:           CLOUD
+Number of trees:                   10
+Sample size:                       357962
+Number of independent variables:   27
+Mtry:                              5
+Target node size:                  1
+Variable importance mode:          0
+Memory mode:                       0
+Seed:                              0
+Number of threads:                 8
+
+Saved predictions to file ranger_out.prediction.
+Finished Ranger.

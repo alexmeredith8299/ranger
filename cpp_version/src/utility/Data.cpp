@@ -66,12 +66,12 @@ bool Data::loadFromFile(std::string filename, std::string mask_filename, std::ve
     //Close file (we will reopen with stb)
     input_file.close();
     //Debug print + load from img
-    std::cout << "File is a jpeg or png..." << std::endl;
+    //std::cout << "File is a jpeg or png..." << std::endl;
     result = loadFromImg(filename, mask_filename);
     return result;
   } else { //For csvs
     //Same code as ranger repo that I forked this from. So it should still work for csvs.
-    std::cout << "File is not a jpeg or png..." << std::endl;
+    //std::cout << "File is not a jpeg or png..." << std::endl;
     // Count number of rows
     size_t line_count = 0;
     std::string line;
@@ -170,20 +170,114 @@ bool Data::loadFromFileWhitespace(std::ifstream& input_file, std::string header_
 
 bool Data::loadFromImg(std::string img_path, std::string mask_path) {
   int width, height, channels;
-  // use 0 to have stb figure out components per pixel
-  uint8_t *img = stbi_load(img_path.c_str(), &width, &height, &channels, 0);
 
+  //Load img with STB
+  uint8_t *img = stbi_load(img_path.c_str(), &width, &height, &channels, 0);
+  int kernel_size = 3; //TODO: make this changeable in CLA. 3x3 kernel is default.
+
+  //Catch STB errors
   if (img == NULL)
   {
       printf("error loading image, reason: %s\n", stbi_failure_reason());
       exit(1);
   }
-
-  printf("loaded image of size w, h, c, %i %i %i\n", width, height, channels);
+  //Free image
   stbi_image_free(img);
 
-  throw std::runtime_error(
-      std::string("Load from image not yet implemented"));
+  //Reserve memory for one dependent variable and kernel_size kernel with 3 channels
+  num_rows = width*height;
+  num_cols = kernel_size*kernel_size*3;
+  reserveMemory(1);
+
+  //For testing: generate fake mask (i.e. sety to 1 for everything)
+  if(mask_path=="") {
+    //Set y for no mask (just give mask=1 for every row)
+    size_t row = 0;
+    size_t depvar_i = 0;
+    bool error = false;
+    for (int i = 0; i < width; i++)
+    {
+      for (int j = 0; j < height; j++)
+      {
+        set_y(depvar_i, row, 1, error);
+        row += 1;
+      }
+    }
+  } else { //Load mask
+    int mask_width, mask_height, mask_channels;
+    uint8_t *img_mask = stbi_load(mask_path.c_str(), &mask_width, &mask_height, &mask_channels, 0);
+
+    //Catch STB errors
+    if (img_mask == NULL)
+    {
+        printf("error loading image, reason: %s\n", stbi_failure_reason());
+        exit(1);
+    }
+
+    //Error if mask size != training img size
+    if(mask_width!=width || mask_height!=height) {
+      throw std::runtime_error(
+          std::string("Mask dimensions do not match image dimensions"));
+    }
+
+    //Set y for mask
+    size_t row = 0;
+    size_t depvar_i = 0;
+    bool error = false;
+    for (int i = 0; i < width; i++)
+    {
+      for (int j = 0; j < height; j++)
+      {
+        //Assume 1 channel in the mask
+        int offset = (channels)*((width * j) + i);
+        int mask_val = img[offset];
+        set_y(depvar_i, row, mask_val, error);
+        row += 1;
+      }
+    }
+    stbi_image_free(img_mask);
+  }
+  //Set x for img
+  img = stbi_load(img_path.c_str(), &width, &height, &channels, 0);
+  size_t row = 0;
+  bool error = false;
+  int max_offset = std::floor(kernel_size/2);
+  for(int i = 0; i < width; i++) {
+    for (int j = 0; j < height; j++) {
+      size_t column_x = 0;
+      //Loop over image kernel
+      for(int k = i-max_offset; k <= i+max_offset; k++) {
+        for(int l = j-max_offset; l <= j+max_offset; l++) {
+          //Ensure we stay in bounds of the img
+          int kcol = k;
+          int lrow = l;
+          if(k < 0) {
+            kcol = 0;
+          } else if (k >=width) {
+            kcol = width-1;
+          }
+          if(l < 0) {
+            lrow = 0;
+          } else if (l >= height) {
+            lrow = height-1;
+          }
+          //Assume 3 channels for R, G, B
+          int offset = (channels) * ((width * lrow) + kcol);
+          int r_px = img[offset];
+          set_x(column_x, row, r_px, error);
+          column_x += 1;
+          int g_px = img[offset + 1];
+          set_x(column_x, row, g_px, error);
+          column_x += 1;
+          int b_px = img[offset + 2];
+          set_x(column_x, row, b_px, error);
+          column_x += 1;
+        }
+      }
+      row += 1;
+    }
+  }
+  stbi_image_free(img);
 
   return 1;
 }
