@@ -1335,7 +1335,9 @@ CMakeFiles/ranger.dir/src/Forest/ForestProbability.o: ../src/Forest/ForestProbab
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/thread \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/condition_variable \
   ../src/Tree/Tree.h \
-  ../src/Tree/TreeProbability.h
+  ../src/Tree/TreeProbability.h \
+  ../src/utility/stb_image.h \
+  ../src/utility/stb_image_write.h
 
 CMakeFiles/ranger.dir/src/Forest/ForestRegression.o: ../src/Forest/ForestRegression.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/algorithm \
@@ -1778,7 +1780,9 @@ CMakeFiles/ranger.dir/src/Forest/ForestRegression.o: ../src/Forest/ForestRegress
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/thread \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/condition_variable \
   ../src/Tree/Tree.h \
-  ../src/Tree/TreeRegression.h
+  ../src/Tree/TreeRegression.h \
+  ../src/utility/stb_image.h \
+  ../src/utility/stb_image_write.h
 
 CMakeFiles/ranger.dir/src/Forest/ForestSurvival.o: ../src/Forest/ForestSurvival.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/set \
@@ -2223,7 +2227,9 @@ CMakeFiles/ranger.dir/src/Forest/ForestSurvival.o: ../src/Forest/ForestSurvival.
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/thread \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/condition_variable \
   ../src/Tree/Tree.h \
-  ../src/Tree/TreeSurvival.h
+  ../src/Tree/TreeSurvival.h \
+  ../src/utility/stb_image.h \
+  ../src/utility/stb_image_write.h
 
 CMakeFiles/ranger.dir/src/Tree/Tree.o: ../src/Tree/Tree.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/iterator \
@@ -5750,6 +5756,8 @@ CMakeFiles/ranger.dir/src/utility/Data.o: ../src/utility/Data.cpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__split_buffer \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/iomanip \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/sstream \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/dirent.h \
+  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/sys/dirent.h \
   ../src/utility/Data.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/vector \
   /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/iostream \
@@ -6973,6 +6981,8 @@ CMakeFiles/ranger.dir/src/utility/utility.o: ../src/utility/utility.cpp \
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/sys/_types/_null.h:
 
+/Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/sys/dirent.h:
+
 /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/i386/endian.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/ratio:
@@ -6986,6 +6996,8 @@ CMakeFiles/ranger.dir/src/utility/utility.o: ../src/utility/utility.cpp \
 /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__iterator/concepts.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/typeinfo:
+
+/Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/dirent.h:
 
 /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__algorithm/set_difference.h:
 

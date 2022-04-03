@@ -1339,6 +1339,8 @@ CMakeFiles/ranger.dir/src/Forest/ForestProbability.o
  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/condition_variable
  /Users/alexmeredith/ranger/cpp_version/src/Tree/Tree.h
  /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeProbability.h
+ /Users/alexmeredith/ranger/cpp_version/src/utility/stb_image.h
+ /Users/alexmeredith/ranger/cpp_version/src/utility/stb_image_write.h
 
 CMakeFiles/ranger.dir/src/Forest/ForestRegression.o
  /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestRegression.cpp
@@ -1783,6 +1785,8 @@ CMakeFiles/ranger.dir/src/Forest/ForestRegression.o
  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/condition_variable
  /Users/alexmeredith/ranger/cpp_version/src/Tree/Tree.h
  /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeRegression.h
+ /Users/alexmeredith/ranger/cpp_version/src/utility/stb_image.h
+ /Users/alexmeredith/ranger/cpp_version/src/utility/stb_image_write.h
 
 CMakeFiles/ranger.dir/src/Forest/ForestSurvival.o
  /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestSurvival.cpp
@@ -2229,6 +2233,8 @@ CMakeFiles/ranger.dir/src/Forest/ForestSurvival.o
  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/condition_variable
  /Users/alexmeredith/ranger/cpp_version/src/Tree/Tree.h
  /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeSurvival.h
+ /Users/alexmeredith/ranger/cpp_version/src/utility/stb_image.h
+ /Users/alexmeredith/ranger/cpp_version/src/utility/stb_image_write.h
 
 CMakeFiles/ranger.dir/src/Tree/Tree.o
  /Users/alexmeredith/ranger/cpp_version/src/Tree/Tree.cpp
@@ -5763,6 +5769,8 @@ CMakeFiles/ranger.dir/src/utility/Data.o
  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/__split_buffer
  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/iomanip
  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/sstream
+ /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/dirent.h
+ /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/sys/dirent.h
  /Users/alexmeredith/ranger/cpp_version/src/utility/Data.h
  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/vector
  /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/iostream

@@ -43,12 +43,16 @@ public:
 
   void addSnpData(unsigned char* snp_data, size_t num_cols_snp);
 
-  bool loadFromFile(std::string filename, std::string eval_filename, std::vector<std::string>& dependent_variable_names);
+  bool batchDataLoader(std::string dirpath, std::string mask_dirpath, std::vector<std::string>& dependent_variable_names);
+  bool loadFromFile(std::string filename, std::string eval_filename, std::vector<std::string>& dependent_variable_names, bool batch_data);
   bool loadFromImg(std::string img_path, std::string mask_path);
   bool loadFromFileWhitespace(std::ifstream& input_file, std::string header_line,
-      std::vector<std::string>& dependent_variable_names);
+      std::vector<std::string>& dependent_variable_names, size_t row_start);
   bool loadFromFileOther(std::ifstream& input_file, std::string header_line,
-      std::vector<std::string>& dependent_variable_names, char seperator);
+      std::vector<std::string>& dependent_variable_names, char seperator, size_t row_start);
+
+  size_t getNumColsForCsv(std::ifstream& input_file, std::string header_line,
+      std::vector<std::string>& dependent_variable_names, char separator, bool whitespace);
 
   void getAllValues(std::vector<double>& all_values, std::vector<size_t>& sampleIDs, size_t varID, size_t start,
       size_t end) const;

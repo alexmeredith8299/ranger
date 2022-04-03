@@ -47,11 +47,12 @@ void Forest::initCpp(std::string dependent_variable_name, MemoryMode memory_mode
     std::string case_weights_file, bool predict_all, double sample_fraction, double alpha, double minprop, bool holdout,
     PredictionType prediction_type, uint num_random_splits, uint max_depth,
     const std::vector<double>& regularization_factor, bool regularization_usedepth,
-    bool write_to_img, size_t img_width, size_t img_height) {
+    bool write_to_img, size_t img_width, size_t img_height, bool batch_data) {
 
   this->write_to_img = write_to_img;
   this->img_width = img_width;
   this->img_height = img_height;
+  this->batch_data = batch_data;
 
   this->memory_mode = memory_mode;
   this->verbose_out = verbose_out;
@@ -85,7 +86,7 @@ void Forest::initCpp(std::string dependent_variable_name, MemoryMode memory_mode
   }
 
   // Call other init function
-  init(loadDataFromFile(input_file, evaluation_file), mtry, output_prefix, num_trees, seed, num_threads, importance_mode,
+  init(loadDataFromFile(input_file, evaluation_file, batch_data), mtry, output_prefix, num_trees, seed, num_threads, importance_mode,
       min_node_size, prediction_mode, sample_with_replacement, unordered_variable_names, memory_saving_splitting,
       splitrule, predict_all, sample_fraction_vector, alpha, minprop, holdout, prediction_type, num_random_splits,
       false, max_depth, regularization_factor, regularization_usedepth);
@@ -930,7 +931,7 @@ void Forest::loadDependentVariableNamesFromFile(std::string filename) {
   infile.close();
 }
 
-std::unique_ptr<Data> Forest::loadDataFromFile(const std::string& data_path, const std::string& evaldata_path) {
+std::unique_ptr<Data> Forest::loadDataFromFile(const std::string& data_path, const std::string& evaldata_path, const bool batch_data) {
   std::unique_ptr<Data> result { };
   switch (memory_mode) {
   case MEM_DOUBLE:
@@ -946,7 +947,7 @@ std::unique_ptr<Data> Forest::loadDataFromFile(const std::string& data_path, con
 
   if (verbose_out)
     *verbose_out << "Loading input file: " << data_path << "." << std::endl;
-  bool found_rounding_error = result->loadFromFile(data_path, evaldata_path, dependent_variable_names);
+  bool found_rounding_error = result->loadFromFile(data_path, evaldata_path, dependent_variable_names, batch_data);
   if (found_rounding_error && verbose_out) {
     *verbose_out << "Warning: Rounding or Integer overflow occurred. Use FLOAT or DOUBLE precision to avoid this."
         << std::endl;

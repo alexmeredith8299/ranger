@@ -37,12 +37,13 @@ ArgumentHandler::ArgumentHandler(int argc, char **argv) :
 int ArgumentHandler::processArguments() {
 
   // short options
-  char const *short_options = "A:C:D:F:HM:NOP:Q:R:S:U:WXZa:b:c:d:e:f:hi:j:kl:m:o:pr:s:t:uvwy:z:";
+  char const *short_options = "A:BC:D:F:HM:NOP:Q:R:S:U:WXZa:b:c:d:e:f:hi:j:kl:m:o:pr:s:t:uvwy:z:";
 
 // long options: longname, no/optional/required argument?, flag(not used!), shortname
     const struct option long_options[] = {
 
       { "alwayssplitvars",      required_argument,  0, 'A'},
+      { "batchtrain",           no_argument,        0, 'B'},
       { "caseweights",          required_argument,  0, 'C'},
       { "depvarname",           required_argument,  0, 'D'},
       { "fraction",             required_argument,  0, 'F'},
@@ -99,6 +100,10 @@ int ArgumentHandler::processArguments() {
     // upper case options
     case 'A':
       splitString(alwayssplitvars, optarg, ',');
+      break;
+
+    case 'B':
+      batchtrain = true;
       break;
 
     case 'C':
@@ -450,6 +455,9 @@ void ArgumentHandler::checkArguments() {
   if (predict.empty() && depvarname.empty()) {
     throw std::runtime_error("Please specify a dependent variable name with '--depvarname'. See '--help' for details.");
   }
+  if (batchtrain && !predict.empty()) {
+    throw std::runtime_error("Batch data loading is not supported for prediction. \n Please try again without '--batch'. See '--help' for details.");
+  }
 
   if(file.substr(file.find_last_of(".") + 1) == "jpeg" || file.substr(file.find_last_of(".") + 1) == "png") {
     int width;
@@ -531,6 +539,10 @@ void ArgumentHandler::checkArguments() {
     infile.close();
   }
 
+  if ((treetype == TREE_SURVIVAL || treetype == TREE_REGRESSION) && writetoimg) {
+    throw std::runtime_error("Writing to an image is supported for classification forests only (including probability forests). \n Please select a different forest type with '--treetype' or a different filename with '--file'. \n See '--help' for details. ");
+  }
+
   if (predict.empty() && predall) {
     throw std::runtime_error("Option '--predall' only available in prediction mode.");
   }
@@ -594,6 +606,7 @@ void ArgumentHandler::displayHelp() {
   std::cout << "    " << "--help                        Print this help." << std::endl;
   std::cout << "    " << "--version                     Print version and citation information." << std::endl;
   std::cout << "    " << "--verbose                     Turn on verbose mode." << std::endl;
+  std::cout << "    " << "--batch                       Batch load data (load all files in the folder indicated by '--file'). Supported for training only." << std::endl;
   std::cout << "    " << "--file FILE                   Filename of input data. Only numerical values and images are supported."
       << std::endl;
   std::cout << "    " << "--mask FILE                   Filename of image mask (used when training on images). Only images are supported."

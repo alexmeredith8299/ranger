@@ -14,6 +14,7 @@
 #include <stdexcept>
 #include <algorithm>
 #include <iterator>
+#include <dirent.h>
 
 #include "Data.h"
 #include "utility.h"
@@ -49,60 +50,221 @@ void Data::addSnpData(unsigned char* snp_data, size_t num_cols_snp) {
 }
 // #nocov end
 
+bool Data::batchDataLoader(std::string dirpath, std::string mask_dirpath, std::vector<std::string>& dependent_variable_names) {
+  std::cout<<"Batch data loading is on.\n";
+
+  bool has_csv = false;
+  bool has_other = false;
+  bool has_img = false;
+
+  //Loop over directory to get file extensions (test example)
+  DIR *dirp;
+  struct dirent* dent;
+  //TODO: replace with real path
+  dirp=opendir(dirpath.c_str());
+  do {
+      dent = readdir(dirp);
+      if (dent)
+      {
+        std::string fname = dent->d_name;
+        if(fname!=".." && fname!=".") {
+          std::cout<<"File name is: "<<fname<<"\n";
+          std::string extension = fname.substr(fname.find_last_of(".") + 1);
+          std::cout<<"Extension is: "<<extension<<"\n";
+          if(extension == "jpeg" || extension == "png") {
+            has_img = true;
+          } else if (extension == "csv") {
+            has_csv = true;
+          } else {
+            has_other = true;
+          }
+        }
+      }
+  } while (dent);
+  closedir(dirp);
+  if(has_other) {
+    throw std::runtime_error("Some files in batch dataloader have extensions other than .csv, .jpeg, or .img");
+  }
+  if(has_img) {
+    throw std::runtime_error("Batch data loading is currently not supported for images");
+  } else {
+    //Batch loading for csvs only.
+    //Loop over directory (test example)
+    DIR *dirp;
+    struct dirent* dent;
+    //TODO: replace with real path
+    size_t total_cols = 0;
+    size_t total_rows = 0;
+    //std::ifstream input_file;
+    dirp=opendir(dirpath.c_str());
+    do {
+        dent = readdir(dirp);
+        if (dent)
+        {
+          std::string fname = dent->d_name;
+          if(fname!=".." && fname!=".") {
+            std::cout<<"Getting rows and cols for file: "<<fname<<"\n";
+            std::string extension = fname.substr(fname.find_last_of(".") + 1);
+            if(extension == "csv") {
+              //Load file
+              std::ifstream input_file;
+              input_file.open(dirpath+"/"+fname);
+              //Error if cannot open
+              if (!input_file.good()) {
+                throw std::runtime_error("Could not open input file.");
+              }
+              // Check if comma, semicolon or whitespace seperated
+              std::string header_line;
+              getline(input_file, header_line);
+              //Get cols
+              size_t n_cols = 0;
+              if (header_line.find(',') != std::string::npos) {
+                n_cols = getNumColsForCsv(input_file, header_line, dependent_variable_names, ',', false);
+              } else if (header_line.find(';') != std::string::npos) {
+                n_cols = getNumColsForCsv(input_file, header_line, dependent_variable_names, ';', false);
+              } else {
+                n_cols = getNumColsForCsv(input_file, header_line, dependent_variable_names, ';', true);
+              }
+              //If cols mismatch -> error
+              if (total_cols == 0) {
+                total_cols = n_cols;
+              }
+              if(total_cols != n_cols) {
+                throw std::runtime_error("Number of columns does not match across files");
+              }
+              //Get rows (# of lines excluding header)
+              size_t line_count = 0;
+              std::string line;
+              while (getline(input_file, line)) {
+                ++line_count;
+              }
+              total_rows += line_count;
+              //Close file
+              input_file.close();
+              std::cout<<"File "<<fname<<"has "<<line_count<<" rows and "<<n_cols<<" cols\n";
+            }
+          }
+        }
+    } while (dent);
+    closedir(dirp);
+    std::cout<<"All files have "<<total_rows<<" rows and "<<total_cols<<" cols\n";
+    //Reserve chunk of memory for data
+    size_t num_dependent_variables = dependent_variable_names.size();
+    num_cols = total_cols;
+    num_rows = total_rows;
+    reserveMemory(num_dependent_variables);
+    size_t row = 0;
+    //Loop over files and load data from each one
+    dirp=opendir(dirpath.c_str());
+    do {
+        dent = readdir(dirp);
+        if (dent)
+        {
+          std::string fname = dent->d_name;
+          if(fname!=".." && fname!=".") {
+            std::cout<<"Loading data for file: "<<fname<<"\n";
+            std::string extension = fname.substr(fname.find_last_of(".") + 1);
+            if(extension == "csv") {
+              //Load file
+              std::ifstream input_file;
+              input_file.open(dirpath+"/"+fname);
+              //Error if cannot open
+              if (!input_file.good()) {
+                throw std::runtime_error("Could not open input file.");
+              }
+              // Check if comma, semicolon or whitespace seperated
+              std::string header_line;
+              getline(input_file, header_line);
+              //Get cols
+              size_t n_cols = 0;
+              bool result;
+              if (header_line.find(',') != std::string::npos) {
+                result = loadFromFileOther(input_file, header_line, dependent_variable_names, ',', row);
+                row = num_rows;
+                num_rows = total_rows;
+              } else if (header_line.find(';') != std::string::npos) {
+                result = loadFromFileOther(input_file, header_line, dependent_variable_names, ';', row);
+                row = num_rows;
+                num_rows = total_rows;
+              } else {
+                result = loadFromFileWhitespace(input_file, header_line, dependent_variable_names, row);
+                row = num_rows;
+                num_rows = total_rows;
+              }
+              input_file.close();
+            }
+          }
+        }
+    } while (dent);
+    closedir(dirp);
+    throw std::runtime_error("Batch data loading is currently not supported");
+  }
+  return false;
+}
+
 // #nocov start
-bool Data::loadFromFile(std::string filename, std::string mask_filename, std::vector<std::string>& dependent_variable_names) {
+bool Data::loadFromFile(std::string filename, std::string mask_filename, std::vector<std::string>& dependent_variable_names, bool batch_data) {
 
   bool result;
 
-  // Open input file
-  std::ifstream input_file;
-  input_file.open(filename);
-  if (!input_file.good()) {
-    throw std::runtime_error("Could not open input file.");
-  }
-
-  //For jpegs and pngs
-  if(filename.substr(filename.find_last_of(".") + 1) == "jpeg" || filename.substr(filename.find_last_of(".") + 1) == "png") {
-    //Close file (we will reopen with stb)
-    input_file.close();
-    //Debug print + load from img
-    //std::cout << "File is a jpeg or png..." << std::endl;
-    result = loadFromImg(filename, mask_filename);
-    return result;
-  } else { //For csvs
-    //Same code as ranger repo that I forked this from. So it should still work for csvs.
-    //std::cout << "File is not a jpeg or png..." << std::endl;
-    // Count number of rows
-    size_t line_count = 0;
-    std::string line;
-    while (getline(input_file, line)) {
-      ++line_count;
-    }
-    num_rows = line_count - 1;
-    input_file.close();
+  if(batch_data) {
+    batchDataLoader(filename, mask_filename, dependent_variable_names);
+  } else {
+    std::cout<<"Batch data loading is off.\n";
+    // Open input file
+    std::ifstream input_file;
     input_file.open(filename);
-
-    // Check if comma, semicolon or whitespace seperated
-    std::string header_line;
-    getline(input_file, header_line);
-
-    // Find out if comma, semicolon or whitespace seperated and call appropriate method
-    if (header_line.find(',') != std::string::npos) {
-      result = loadFromFileOther(input_file, header_line, dependent_variable_names, ',');
-    } else if (header_line.find(';') != std::string::npos) {
-      result = loadFromFileOther(input_file, header_line, dependent_variable_names, ';');
-    } else {
-      result = loadFromFileWhitespace(input_file, header_line, dependent_variable_names);
+    if (!input_file.good()) {
+      throw std::runtime_error("Could not open input file.");
     }
 
-    externalData = false;
-    input_file.close();
-    return result;
+    //For jpegs and pngs
+    if(filename.substr(filename.find_last_of(".") + 1) == "jpeg" || filename.substr(filename.find_last_of(".") + 1) == "png") {
+      //Close file (we will reopen with stb)
+      input_file.close();
+      //Debug print + load from img
+      result = loadFromImg(filename, mask_filename);
+      return result;
+    } else { //For csvs
+      //Same code as ranger repo that I forked this from. So it should still work for csvs.
+      // Count number of rows
+      size_t line_count = 0;
+      std::string line;
+      while (getline(input_file, line)) {
+        ++line_count;
+      }
+      num_rows = line_count - 1;
+      input_file.close();
+      input_file.open(filename);
+
+      // Check if comma, semicolon or whitespace seperated
+      std::string header_line;
+      getline(input_file, header_line);
+
+      size_t num_dependent_variables = dependent_variable_names.size();
+      // Find out if comma, semicolon or whitespace seperated and call appropriate method
+      if (header_line.find(',') != std::string::npos) {
+        num_cols = getNumColsForCsv(input_file, header_line, dependent_variable_names, ',', false);
+        reserveMemory(num_dependent_variables);
+        result = loadFromFileOther(input_file, header_line, dependent_variable_names, ',', 0);
+      } else if (header_line.find(';') != std::string::npos) {
+        num_cols = getNumColsForCsv(input_file, header_line, dependent_variable_names, ';', false);
+        reserveMemory(num_dependent_variables);
+        result = loadFromFileOther(input_file, header_line, dependent_variable_names, ';', 0);
+      } else {
+        num_cols = getNumColsForCsv(input_file, header_line, dependent_variable_names, ';', true);
+        reserveMemory(num_dependent_variables);
+        result = loadFromFileWhitespace(input_file, header_line, dependent_variable_names, 0);
+      }
+      externalData = false;
+      input_file.close();
+      return result;
+    }
   }
 }
 
 bool Data::loadFromFileWhitespace(std::ifstream& input_file, std::string header_line,
-    std::vector<std::string>& dependent_variable_names) {
+    std::vector<std::string>& dependent_variable_names, size_t row_start) {
   size_t num_dependent_variables = dependent_variable_names.size();
   std::vector<size_t> dependent_varIDs;
   dependent_varIDs.resize(num_dependent_variables);
@@ -125,14 +287,17 @@ bool Data::loadFromFileWhitespace(std::ifstream& input_file, std::string header_
     ++col;
   }
 
-  num_cols = variable_names.size();
+  //num_cols = variable_names.size();
+  //Not tested for whitespace-separated files
+  //char separator = 'B';
+  //num_cols = getNumColsForCsv(input_file, header_line, dependent_variable_names, separator, true);
   num_cols_no_snp = num_cols;
 
   // Read body
-  reserveMemory(num_dependent_variables);
+  //reserveMemory(num_dependent_variables);
   bool error = false;
   std::string line;
-  size_t row = 0;
+  size_t row = row_start;
   while (getline(input_file, line)) {
     double token;
     std::stringstream line_stream(line);
@@ -282,13 +447,57 @@ bool Data::loadFromImg(std::string img_path, std::string mask_path) {
   return 1;
 }
 
+size_t Data::getNumColsForCsv(std::ifstream& input_file, std::string header_line,
+    std::vector<std::string>& dependent_variable_names, char separator, bool whitespace) {
+  // Read header
+  std::string header_token;
+  std::stringstream header_line_stream(header_line);
+  std::vector<std::string> tmp_variable_names;
+  size_t col = 0;
+  if (whitespace) {
+    //Get line (separated by whitespace)
+    while (header_line_stream >> header_token) {
+      bool is_dependent_var = false;
+      for (size_t i = 0; i < dependent_variable_names.size(); ++i) {
+        if (header_token == dependent_variable_names[i]) {
+          //dependent_varIDs[i] = col;
+          is_dependent_var = true;
+        }
+      }
+      if (!is_dependent_var) {
+        tmp_variable_names.push_back(header_token);
+      }
+      ++col;
+    }
+  } else {
+    //Get line using separator
+    while (getline(header_line_stream, header_token, separator)) {
+      bool is_dependent_var = false;
+      for (size_t i = 0; i < dependent_variable_names.size(); ++i) {
+        if (header_token == dependent_variable_names[i]) {
+          //dependent_varIDs[i] = col;
+          is_dependent_var = true;
+        }
+      }
+      if (!is_dependent_var) {
+        tmp_variable_names.push_back(header_token);
+      }
+      ++col;
+    }
+  }
+  //Figure out # of cols
+  size_t n_cols = tmp_variable_names.size();
+  return n_cols;
+}
+
 bool Data::loadFromFileOther(std::ifstream& input_file, std::string header_line,
-    std::vector<std::string>& dependent_variable_names, char seperator) {
+    std::vector<std::string>& dependent_variable_names, char seperator, size_t row_start) {
   size_t num_dependent_variables = dependent_variable_names.size();
   std::vector<size_t> dependent_varIDs;
   dependent_varIDs.resize(num_dependent_variables);
+  //reserveMemory(num_dependent_variables);
 
-  // Read header
+  // Read header and fill in dependent vars
   std::string header_token;
   std::stringstream header_line_stream(header_line);
   size_t col = 0;
@@ -299,21 +508,23 @@ bool Data::loadFromFileOther(std::ifstream& input_file, std::string header_line,
         dependent_varIDs[i] = col;
         is_dependent_var = true;
       }
-    }
-    if (!is_dependent_var) {
-      variable_names.push_back(header_token);
+      if (!is_dependent_var) {
+        variable_names.push_back(header_token);
+      }
     }
     ++col;
   }
 
-  num_cols = variable_names.size();
+  //num_cols = getNumColsForCsv(input_file, header_line, dependent_variable_names, seperator, false);//variable_names.size();
+  //num_cols = variable_names.size();
+  //std::cout<<"num_cols="<<num_cols<<'\n';
   num_cols_no_snp = num_cols;
 
   // Read body
-  reserveMemory(num_dependent_variables);
+  //reserveMemory(num_dependent_variables);
   bool error = false;
   std::string line;
-  size_t row = 0;
+  size_t row = row_start;
   while (getline(input_file, line)) {
     std::string token_string;
     double token;
