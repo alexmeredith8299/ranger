@@ -52,6 +52,7 @@ public:
   bool batchtrain;
   std::string caseweights;
   std::string depvarname;
+  int kernelsize;
   double fraction;
   bool holdout;
   MemoryMode memmode;

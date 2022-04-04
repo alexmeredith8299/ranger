@@ -24,7 +24,7 @@
 namespace ranger {
 
 ArgumentHandler::ArgumentHandler(int argc, char **argv) :
-    caseweights(""), depvarname(""), fraction(0), holdout(false), memmode(MEM_DOUBLE), savemem(false), skipoob(false), predict(
+    caseweights(""), depvarname(""),  fraction(0), holdout(false), kernelsize(3), batchtrain(false), memmode(MEM_DOUBLE), savemem(false), skipoob(false), predict(
         ""), predictiontype(DEFAULT_PREDICTIONTYPE), randomsplits(DEFAULT_NUM_RANDOM_SPLITS), splitweights(""), nthreads(
         DEFAULT_NUM_THREADS), predall(false), alpha(DEFAULT_ALPHA), minprop(DEFAULT_MINPROP), maxdepth(
         DEFAULT_MAXDEPTH), file(""), mask(""), impmeasure(DEFAULT_IMPORTANCE_MODE), targetpartitionsize(0), mtry(0), outprefix(
@@ -37,7 +37,7 @@ ArgumentHandler::ArgumentHandler(int argc, char **argv) :
 int ArgumentHandler::processArguments() {
 
   // short options
-  char const *short_options = "A:BC:D:F:HM:NOP:Q:R:S:U:WXZa:b:c:d:e:f:hi:j:kl:m:o:pr:s:t:uvwy:z:";
+  char const *short_options = "A:BC:D:F:HK:M:NOP:Q:R:S:U:WXZa:b:c:d:e:f:hi:j:kl:m:o:pr:s:t:uvwy:z:";
 
 // long options: longname, no/optional/required argument?, flag(not used!), shortname
     const struct option long_options[] = {
@@ -48,6 +48,7 @@ int ArgumentHandler::processArguments() {
       { "depvarname",           required_argument,  0, 'D'},
       { "fraction",             required_argument,  0, 'F'},
       { "holdout",              no_argument,        0, 'H'},
+      { "kernelsize",           required_argument,  0, 'K'},
       { "memmode",              required_argument,  0, 'M'},
       { "savemem",              no_argument,        0, 'N'},
       { "skipoob",              no_argument,        0, 'O'},
@@ -128,6 +129,10 @@ int ArgumentHandler::processArguments() {
 
     case 'H':
       holdout = true;
+      break;
+
+    case 'K':
+      kernelsize = atoi(optarg);
       break;
 
     case 'M':
@@ -547,6 +552,10 @@ void ArgumentHandler::checkArguments() {
     throw std::runtime_error("Option '--predall' only available in prediction mode.");
   }
 
+  if (kernelsize%2==0) {
+    throw std::runtime_error("Kernel side length must be odd. See '--help' for more details");
+  }
+
   if (!alwayssplitvars.empty() && !splitweights.empty()) {
     throw std::runtime_error("Please use only one option of splitweights and alwayssplitvars.");
   }
@@ -611,6 +620,9 @@ void ArgumentHandler::displayHelp() {
       << std::endl;
   std::cout << "    " << "--mask FILE                   Filename of image mask (used when training on images). Only images are supported."
       << std::endl;
+  std::cout<<  "    " << "--kernelsize INT              Side length of kernel (used for training on images)." <<std::endl;
+  std::cout << "    " << "                              Setting '--kernelsize N' results in NxN kernel with N^2 features." << std::endl;
+  std::cout << "    " << "                              Only odd side lengths are supported. Default is 3. "<<std::endl;
   std::cout << "    " << "--treetype TYPE               Set tree type to:" << std::endl;
   std::cout << "    " << "                              TYPE = 1: Classification." << std::endl;
   std::cout << "    " << "                              TYPE = 3: Regression." << std::endl;

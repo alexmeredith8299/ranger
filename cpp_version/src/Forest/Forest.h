@@ -49,7 +49,7 @@ public:
       std::string case_weights_file, bool predict_all, double sample_fraction, double alpha, double minprop,
       bool holdout, PredictionType prediction_type, uint num_random_splits, uint max_depth,
       const std::vector<double>& regularization_factor, bool regularization_usedepth,
-      bool write_to_img, size_t img_width, size_t img_height, bool batch_data);
+      bool write_to_img, size_t img_width, size_t img_height, bool batch_data, size_t kernelsize);
   void initR(std::unique_ptr<Data> input_data, uint mtry, uint num_trees, std::ostream* verbose_out, uint seed,
       uint num_threads, ImportanceMode importance_mode, uint min_node_size,
       std::vector<std::vector<double>>& split_select_weights,
@@ -171,7 +171,8 @@ protected:
   void loadDependentVariableNamesFromFile(std::string filename);
 
   // Load data from file
-  std::unique_ptr<Data> loadDataFromFile(const std::string& data_path, const std::string& evaldata_path, const bool batch_data);
+  std::unique_ptr<Data> loadDataFromFile(const std::string& data_path, const std::string& evaldata_path,
+      const bool batch_data, const size_t kernel_size);
 
   // Set split select weights and variables to be always considered for splitting
   void setSplitWeightVector(std::vector<std::vector<double>>& split_select_weights);
@@ -225,6 +226,7 @@ protected:
   size_t img_width;
   size_t img_height;
   bool batch_data;
+  size_t kernelsize;
 
   std::vector<std::vector<std::vector<double>>> predictions;
   double overall_prediction_error;
