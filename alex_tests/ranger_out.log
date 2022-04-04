@@ -1,9 +1,7 @@
 Starting Ranger.
 Loading input file: train_png/urban_53.48697661930144_11.396374026554358_rgb.png.
-Warning: Rounding or Integer overflow occurred. Use FLOAT or DOUBLE precision to avoid this.
-Growing trees ..
-Computing prediction error ..
-Saved forest to file ranger_out.forest.
+Loading forest from file ranger_out.forest.
+Predicting ..
 
 Tree type:                         Probability estimation
 Dependent variable name:           CLOUD
@@ -17,7 +15,4 @@ Memory mode:                       0
 Seed:                              0
 Number of threads:                 8
 
-Overall OOB prediction error:      0.160961
-
-Saved prediction error to file ranger_out.confusion.
 Finished Ranger.

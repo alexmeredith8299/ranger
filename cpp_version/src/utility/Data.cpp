@@ -85,7 +85,7 @@ bool Data::batchDataLoader(std::string dirpath, std::string mask_dirpath, std::v
   if(has_other) {
     throw std::runtime_error("Some files in batch dataloader have extensions other than .csv, .jpeg, or .img");
   }
-  if(has_img) {
+  if(false) {
     std::cout<<"Testing batch data loading for images....";
     //throw std::runtime_error("Batch data loading is currently not supported for images");
   } else {
@@ -163,6 +163,7 @@ bool Data::batchDataLoader(std::string dirpath, std::string mask_dirpath, std::v
     //Reserve chunk of memory for data
     size_t num_dependent_variables = dependent_variable_names.size();
     num_cols = total_cols;
+    num_cols_no_snp = num_cols;
     num_rows = total_rows;
     reserveMemory(num_dependent_variables);
     size_t row = 0;
@@ -204,12 +205,21 @@ bool Data::batchDataLoader(std::string dirpath, std::string mask_dirpath, std::v
                 num_rows = total_rows;
               }
               input_file.close();
+            } else if(extension== "jpeg"||extension=="jpg"||extension=="png") {
+              std::tuple<size_t, size_t, size_t> dims = getImgDims(dirpath+"/"+fname);
+              size_t width = std::get<0>(dims);
+              size_t height = std::get<1>(dims);
+              size_t channels = std::get<2>(dims);
+              std::tuple<size_t, size_t, size_t> mask_dims = getImgDims(dirpath+"/"+fname);
+              loadFromImg(dirpath+"/"+fname, mask_dirpath+"/"+fname, kernel_size, width, height, channels, row);
+              row = num_rows;
+              num_rows = total_rows;
             }
           }
         }
     } while (dent);
     closedir(dirp);
-    throw std::runtime_error("Batch data loading is currently not supported");
+    //throw std::runtime_error("Batch data loading is currently not supported");
   }
   return false;
 }
@@ -238,19 +248,19 @@ bool Data::loadFromFile(std::string filename, std::string mask_filename, std::ve
       //Close file (we will reopen with stb)
       input_file.close();
       //Load image size and reserve memory
-      //std::tuple<size_t, size_t, size_t> dims = getImgDims(filename);
+      std::tuple<size_t, size_t, size_t> dims = getImgDims(filename);
       //W x H
-      //size_t rows = std::get<0>(dims)*std::get<1>(dims);
+      size_t rows = std::get<0>(dims)*std::get<1>(dims);
       //Kernel area x C
-      //size_t cols = kernel_size*kernel_size*std::get<2>(dims);
-      //num_rows = rows;
-      //num_cols = cols;
+      size_t cols = kernel_size*kernel_size*std::get<2>(dims);
+      num_rows = rows;
+      num_cols = cols;
+      num_cols_no_snp = num_cols;
       //Default is 1 independent var, so 1 image mask only.
-      //reserveMemory(1);
+      reserveMemory(1);
       //Load from img
       //std::cout<<"Image with filename "<<filename<<" has dims WxHxC="<<std::get<0>(dims)<<"x"<<std::get<1>(dims)<<"x"<<std::get<2>(dims)<<"\n";
-      result = loadFromImg(filename, mask_filename);//, kernel_size, 0,0,0);
-      num_cols_no_snp = num_cols;
+      result = loadFromImg(filename, mask_filename, kernel_size, std::get<0>(dims), std::get<1>(dims), std::get<2>(dims), 0);//, kernel_size, 0,0,0);
       std::cout<<"loaded img\n";
       return result;
     } else { //For csvs
@@ -362,10 +372,10 @@ bool Data::loadFromFileWhitespace(std::ifstream& input_file, std::string header_
 }
 
 
-/*bool Data::loadFromImg(std::string img_path, std::string mask_path, size_t kernel_size,
-  size_t width1, size_t height1, size_t channels1) {
+bool Data::loadFromImg(std::string img_path, std::string mask_path, size_t kernel_size,
+  size_t width, size_t height, size_t channels, size_t row_start) {
 
-  int width, height, channels;
+  /*int width, height, channels;
 
   //Load img with STB
   uint8_t *img = stbi_load(img_path.c_str(), &width, &height, &channels, 0);
@@ -384,12 +394,12 @@ bool Data::loadFromFileWhitespace(std::ifstream& input_file, std::string header_
   //Reserve memory for one dependent variable and kernel_size kernel with 3 channels
   num_rows = width*height;
   num_cols = kernel_size*kernel_size*3;
-  reserveMemory(1);
+  reserveMemory(1);*/
 
   //For testing: generate fake mask (i.e. sety to 1 for everything)
   if(mask_path=="") {
     //Set y for no mask (just give mask=1 for every row)
-    size_t row = 0;
+    size_t row = row_start;
     size_t depvar_i = 0;
     bool error = false;
     for (int i = 0; i < width; i++)
@@ -419,7 +429,7 @@ bool Data::loadFromFileWhitespace(std::ifstream& input_file, std::string header_
     }
 
     //Set y for mask
-    size_t row = 0;
+    size_t row = row_start;
     size_t depvar_i = 0;
     bool error = false;
     for (int i = 0; i < width; i++)
@@ -427,9 +437,13 @@ bool Data::loadFromFileWhitespace(std::ifstream& input_file, std::string header_
       for (int j = 0; j < height; j++)
       {
         //Assume 1 channel in the mask
-        int offset = (channels)*((width * j) + i);
-        int mask_val = img[offset];
-        set_y(depvar_i, row, mask_val, error);
+        int offset = (mask_channels)*((width * j) + i);
+        int mask_val = img_mask[offset];
+        if(mask_val >=255/2) { //Cloud
+          set_y(depvar_i, row, 1, error);
+        } else {
+          set_y(depvar_i, row, 0, error);
+        }
         //std::cout<<"set y with row ="<<row<<" and val="<<mask_val<<"\n";
         row += 1;
       }
@@ -440,10 +454,10 @@ bool Data::loadFromFileWhitespace(std::ifstream& input_file, std::string header_
   //Set x for img
   int width_load, height_load, channels_load;
   //Load img with STB
-  img = stbi_load(img_path.c_str(), &width_load, &height_load, &channels_load, 0);
+  uint8_t *img = stbi_load(img_path.c_str(), &width_load, &height_load, &channels_load, 0);
   //TODO: check if dims match?
   std::cout<<"WxHxC="<<width_load<<"x"<<height_load<<"x"<<channels_load<<"\n";
-  size_t row = 0;
+  size_t row = row_start;
   bool error = false;
   int max_offset = std::floor(kernel_size/2);
   for(int i = 0; i < width; i++) {
@@ -483,163 +497,11 @@ bool Data::loadFromFileWhitespace(std::ifstream& input_file, std::string header_
       row += 1;
     }
   }
+  num_rows = row;
   std::cout<<"about to free img\n";
   stbi_image_free(img);
   std::cout<<"freed img\n";
   return false;
-}*/
-bool Data::loadFromImg(std::string img_path, std::string mask_path) {
-  int width, height, channels;
-  std::cout<<"Img filename="<<img_path<<"\n";
-
-  //Load img with STB
-  uint8_t *img = stbi_load(img_path.c_str(), &width, &height, &channels, 0);
-  int kernel_size = 3; //TODO: make this changeable in CLA. 3x3 kernel is default.
-
-  //Catch STB errors
-  if (img == NULL)
-  {
-      printf("error loading image, reason: %s\n", stbi_failure_reason());
-      exit(1);
-  }
-  //Free image
-  stbi_image_free(img);
-
-  //Reserve memory for one dependent variable and kernel_size kernel with 3 channels
-  num_rows = width*height;
-  num_cols = kernel_size*kernel_size*3;
-  reserveMemory(1);
-
-  //For testing: generate fake mask (i.e. sety to 1 for everything)
-  if(mask_path=="") {
-  //if(true) {
-    //Set y for no mask (just give mask=1 for every row)
-    /*int mask_width, mask_height, mask_channels;
-    uint8_t *img_mask = stbi_load(mask_path.c_str(), &mask_width, &mask_height, &mask_channels, 0);
-
-    //Catch STB errors
-    if (img_mask == NULL)
-    {
-        printf("error loading image, reason: %s\n", stbi_failure_reason());
-        exit(1);
-    }
-    stbi_image_free(img_mask);*/
-    size_t row = 0;
-    size_t depvar_i = 0;
-    bool error = false;
-    for (int i = 0; i < width; i++)
-    {
-      for (int j = 0; j < height; j++)
-      {
-        if(j>200) {
-          set_y(depvar_i, row, 0, error);
-        } else {
-          set_y(depvar_i, row, 1, error);
-        }
-        row += 1;
-      }
-    }
-  } else { //Load mask
-    int mask_width, mask_height, mask_channels;
-
-    uint8_t *img_mask = stbi_load(mask_path.c_str(), &mask_width, &mask_height, &mask_channels, 0);
-    std::cout<<"mask_channels="<<mask_channels<<"\n";
-    //Catch STB errors
-    if (img_mask == NULL)
-    {
-        printf("error loading image, reason: %s\n", stbi_failure_reason());
-        exit(1);
-    }
-
-    //Error if mask size != training img size
-    if(mask_width!=width || mask_height!=height) {
-      throw std::runtime_error(
-          std::string("Mask dimensions do not match image dimensions"));
-    }
-
-    //Set y for mask
-    size_t row = 0;
-    size_t depvar_i = 0;
-    bool error = false;
-    for (int i = 0; i < width; i++)
-    {
-      for (int j = 0; j < height; j++)
-      {
-        //set_y(depvar_i, row, 0, error);
-        //Assume 1 channel in the mask
-        int offset = (mask_channels)*((width * j) + i);
-        if(offset > 20000) {
-          offset = 65535;
-          offset = 58367;
-        } else {
-          offset = 0;
-        }
-        //offset = 65535;
-        std::cout<<"offset="<<offset<<"\n";
-        //int offset = 0;//width*j+i;
-        int mask_val = img[offset];
-        //TODO: change to allow for multiple classes (this is setting cloud px/not pitch black px to 1)
-        /*if(mask_val!=0 && mask_val!=255) {
-          std::cout<<"maskval="<<mask_val<<"\n";
-        }*/
-        std::cout<<"mask_val="<<mask_val<<"\n";
-        if(offset > 20000) {
-          //mask_val = 1;
-          std::cout<<"writing 1\n";
-          set_y(depvar_i, row, 1, error);
-        } else {
-          std::cout<<"writing 0\n";
-          set_y(depvar_i, row, 0, error);
-        }
-        //set_y(depvar_i, row, 0, error);
-        row += 1;
-      }
-    }
-    stbi_image_free(img_mask);
-  }
-  //Set x for img
-  img = stbi_load(img_path.c_str(), &width, &height, &channels, 0);
-  size_t row = 0;
-  bool error = false;
-  int max_offset = std::floor(kernel_size/2);
-  for(int i = 0; i < width; i++) {
-    for (int j = 0; j < height; j++) {
-      size_t column_x = 0;
-      //Loop over image kernel
-      for(int k = i-max_offset; k <= i+max_offset; k++) {
-        for(int l = j-max_offset; l <= j+max_offset; l++) {
-          //Ensure we stay in bounds of the img
-          int kcol = k;
-          int lrow = l;
-          if(k < 0) {
-            kcol = 0;
-          } else if (k >=width) {
-            kcol = width-1;
-          }
-          if(l < 0) {
-            lrow = 0;
-          } else if (l >= height) {
-            lrow = height-1;
-          }
-          //Assume 3 channels for R, G, B
-          int offset = (channels) * ((width * lrow) + kcol);
-          int r_px = img[offset];
-          set_x(column_x, row, r_px, error);
-          column_x += 1;
-          int g_px = img[offset + 1];
-          set_x(column_x, row, g_px, error);
-          column_x += 1;
-          int b_px = img[offset + 2];
-          set_x(column_x, row, b_px, error);
-          column_x += 1;
-        }
-      }
-      row += 1;
-    }
-  }
-  stbi_image_free(img);
-
-  return 1;
 }
 
 std::tuple<size_t, size_t, size_t> Data::getImgDims(std::string img_path) {

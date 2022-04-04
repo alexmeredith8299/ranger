@@ -21,5 +21,7 @@ echo "Training ranger model with an img input..."
 #train rf
 echo "Training ranger model with an img input..."
 ./../cpp_version/bin/ranger --file train_png/urban_53.48697661930144_11.396374026554358_rgb.png --mask train_mask_png/urban_53.48697661930144_11.396374026554358_ref.png --depvarname CLOUD --treetype 1 --probability --ntree 10 --write
-#echo "Training ranger model with a batch img input..."
-#./../cpp_version/bin/ranger --batch --file train --depvarname CLOUD --treetype 1 --ntree 10 --write
+echo "Training ranger model with a batch img input..."
+./../cpp_version/bin/ranger --batch --file train_png --mask train_mask_png --depvarname CLOUD --treetype 1 --probability --ntree 10 --write
+echo "Testing with an img..."
+./../cpp_version/bin/ranger --file train_png/urban_53.48697661930144_11.396374026554358_rgb.png --predict ranger_out.forest --writetoimg

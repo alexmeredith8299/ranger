@@ -231,16 +231,28 @@ void ForestProbability::writeImageMask() {
   std::string img_path = output_prefix + ".png";
   const char* img_outpath = img_path.c_str();
 
+  //TODO make this work for non-square imgs.
   //Fill in image with 255 or 0
-  for (size_t i = 0; i < predictions.size(); ++i) {
-    for (size_t j = 0; j < predictions[i].size(); ++j) {
-      for (size_t k = 0; k < predictions[i][j].size(); ++k) {
-        int val = predictions[i][j][k];
-        int idx = channels*k;
-        cloud_mask_out[idx] = std::round(val*255);
-        cloud_mask_out[idx+1] = std::round(val*255);
-        cloud_mask_out[idx+2] = std::round(val*255);
+  for(size_t i = 0; i < img_width; i++) {
+    for(size_t j = 0; j < img_height; j++) {
+      int k = ((img_width * j) +i);
+      int idx = (channels) * k;
+      double val = predictions[0][((img_width * i) +j)][0];//0.0;
+      std::cout<<"size="<<predictions[0][0].size()<<"\n";
+      std::cout<<"othersize"<<predictions[0].size()<<"\n";
+      if(k < predictions[0][0].size()) {
+        val = predictions[0][0][((img_width * i) +j)];
       }
+      std::cout<<"val="<<val<<"\n";
+      //if (val == 1) {
+      cloud_mask_out[idx] = std::round(val*-255)+255;
+      cloud_mask_out[idx+1] = std::round(val*-255)+255;
+      cloud_mask_out[idx+2] = std::round(val*-255)+255;
+      /*} else {
+          cloud_mask_out[idx] = 0;
+          cloud_mask_out[idx+1] = 0;
+          cloud_mask_out[idx+2] = 0;
+      }*/
     }
   }
 

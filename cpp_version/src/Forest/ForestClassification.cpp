@@ -244,21 +244,24 @@ void ForestClassification::writeImageMask() {
   std::string img_path = output_prefix + ".png";
   const char* img_outpath = img_path.c_str();
 
+  //TODO make this work for non-square imgs.
   //Fill in image with 255 or 0
-  for (size_t i = 0; i < predictions.size(); ++i) {
-    for (size_t j = 0; j < predictions[i].size(); ++j) {
-      for (size_t k = 0; k < predictions[i][j].size(); ++k) {
-        int val = predictions[i][j][k];
-        int idx = channels*k;
-        if (val == 1) {
-            cloud_mask_out[idx] = 255;
-            cloud_mask_out[idx+1] = 255;
-            cloud_mask_out[idx+2] = 255;
-        } else {
-            cloud_mask_out[idx] = 0;
-            cloud_mask_out[idx+1] = 0;
-            cloud_mask_out[idx+2] = 0;
-        }
+  for(size_t i = 0; i < img_width; i++) {
+    for(size_t j = 0; j < img_height; j++) {
+      int k = ((img_width * j) +i);
+      int idx = (channels) * k;
+      int val = 0;
+      if(k < predictions[0][0].size()) {
+        val = predictions[0][0][((img_width * i) +j)];
+      }
+      if (val == 1) {
+          cloud_mask_out[idx] = 255;
+          cloud_mask_out[idx+1] = 255;
+          cloud_mask_out[idx+2] = 255;
+      } else {
+          cloud_mask_out[idx] = 0;
+          cloud_mask_out[idx+1] = 0;
+          cloud_mask_out[idx+2] = 0;
       }
     }
   }

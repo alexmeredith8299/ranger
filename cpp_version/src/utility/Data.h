@@ -47,7 +47,8 @@ public:
     size_t kernel_size);
   bool loadFromFile(std::string filename, std::string eval_filename, std::vector<std::string>& dependent_variable_names,
       bool batch_data, size_t kernel_size);
-  bool loadFromImg(std::string img_path, std::string mask_path);//, size_t kernel_size, size_t width, size_t height, size_t channels);
+  bool loadFromImg(std::string img_path, std::string mask_path, size_t kernel_size, size_t width,
+      size_t height, size_t channels, size_t row_start);
   bool loadFromFileWhitespace(std::ifstream& input_file, std::string header_line,
       std::vector<std::string>& dependent_variable_names, size_t row_start);
   bool loadFromFileOther(std::ifstream& input_file, std::string header_line,
