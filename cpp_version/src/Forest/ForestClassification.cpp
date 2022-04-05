@@ -252,7 +252,7 @@ void ForestClassification::writeImageMask() {
       int idx = (channels) * k;
       int val = 0;
       if(k < predictions[0][0].size()) {
-        val = predictions[0][0][((img_width * i) +j)];
+        val = predictions[0][0][((img_height * i) +j)];
       }
       if (val == 1) {
           cloud_mask_out[idx] = 255;

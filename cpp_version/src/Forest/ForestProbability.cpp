@@ -237,13 +237,11 @@ void ForestProbability::writeImageMask() {
     for(size_t j = 0; j < img_height; j++) {
       int k = ((img_width * j) +i);
       int idx = (channels) * k;
-      double val = predictions[0][((img_width * i) +j)][0];//0.0;
-      std::cout<<"size="<<predictions[0][0].size()<<"\n";
-      std::cout<<"othersize"<<predictions[0].size()<<"\n";
+      double val = predictions[0][((img_height * i) +j)][0];//0.0;
+      //std::cout<<"othersize"<<predictions[0].size()<<"\n";
       if(k < predictions[0][0].size()) {
-        val = predictions[0][0][((img_width * i) +j)];
+        val = predictions[0][0][((img_height * i) +j)];
       }
-      std::cout<<"val="<<val<<"\n";
       //if (val == 1) {
       cloud_mask_out[idx] = std::round(val*-255)+255;
       cloud_mask_out[idx+1] = std::round(val*-255)+255;

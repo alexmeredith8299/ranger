@@ -52,7 +52,7 @@ void Data::addSnpData(unsigned char* snp_data, size_t num_cols_snp) {
 
 bool Data::batchDataLoader(std::string dirpath, std::string mask_dirpath, std::vector<std::string>& dependent_variable_names,
   size_t kernel_size) {
-  std::cout<<"Batch data loading is on.\n";
+  //std::cout<<"Batch data loading is on.\n";
 
   bool has_csv = false;
   bool has_other = false;
@@ -68,9 +68,9 @@ bool Data::batchDataLoader(std::string dirpath, std::string mask_dirpath, std::v
       {
         std::string fname = dent->d_name;
         if(fname!=".." && fname!=".") {
-          std::cout<<"File name is: "<<fname<<"\n";
+          //std::cout<<"File name is: "<<fname<<"\n";
           std::string extension = fname.substr(fname.find_last_of(".") + 1);
-          std::cout<<"Extension is: "<<extension<<"\n";
+          //std::cout<<"Extension is: "<<extension<<"\n";
           if(extension == "jpeg" || extension == "png"||extension=="jpg"||extension=="tif") {
             has_img = true;
           } else if (extension == "csv") {
@@ -86,7 +86,7 @@ bool Data::batchDataLoader(std::string dirpath, std::string mask_dirpath, std::v
     throw std::runtime_error("Some files in batch dataloader have extensions other than .csv, .jpeg, or .img");
   }
   if(false) {
-    std::cout<<"Testing batch data loading for images....";
+    //std::cout<<"Testing batch data loading for images....";
     //throw std::runtime_error("Batch data loading is currently not supported for images");
   } else {
     //Loop over directory
@@ -101,7 +101,7 @@ bool Data::batchDataLoader(std::string dirpath, std::string mask_dirpath, std::v
         {
           std::string fname = dent->d_name;
           if(fname!=".." && fname!=".") {
-            std::cout<<"Getting rows and cols for file: "<<fname<<"\n";
+            //std::cout<<"Getting rows and cols for file: "<<fname<<"\n";
             std::string extension = fname.substr(fname.find_last_of(".") + 1);
             if(extension == "csv") {
               //Load file
@@ -139,7 +139,7 @@ bool Data::batchDataLoader(std::string dirpath, std::string mask_dirpath, std::v
               total_rows += line_count;
               //Close file
               input_file.close();
-              std::cout<<"File "<<fname<<"has "<<line_count<<" rows and "<<n_cols<<" cols\n";
+              //std::cout<<"File "<<fname<<"has "<<line_count<<" rows and "<<n_cols<<" cols\n";
             //TODO: fix extensions here.
             } else if(extension=="jpeg"||extension=="jpg"||extension=="png"||extension=="tif") {
               //Get rows, cols for img
@@ -159,7 +159,7 @@ bool Data::batchDataLoader(std::string dirpath, std::string mask_dirpath, std::v
         }
     } while (dent);
     closedir(dirp);
-    std::cout<<"All files have "<<total_rows<<" rows and "<<total_cols<<" cols\n";
+    //std::cout<<"All files have "<<total_rows<<" rows and "<<total_cols<<" cols\n";
     //Reserve chunk of memory for data
     size_t num_dependent_variables = dependent_variable_names.size();
     num_cols = total_cols;
@@ -175,7 +175,7 @@ bool Data::batchDataLoader(std::string dirpath, std::string mask_dirpath, std::v
         {
           std::string fname = dent->d_name;
           if(fname!=".." && fname!=".") {
-            std::cout<<"Loading data for file: "<<fname<<"\n";
+            //std::cout<<"Loading data for file: "<<fname<<"\n";
             std::string extension = fname.substr(fname.find_last_of(".") + 1);
             if(extension == "csv") {
               //Load file
@@ -234,7 +234,7 @@ bool Data::loadFromFile(std::string filename, std::string mask_filename, std::ve
     result = batchDataLoader(filename, mask_filename, dependent_variable_names, kernel_size);
     return result;
   } else {
-    std::cout<<"Batch data loading is off.\n";
+    //std::cout<<"Batch data loading is off.\n";
     // Open input file
     std::ifstream input_file;
     input_file.open(filename);
@@ -261,7 +261,7 @@ bool Data::loadFromFile(std::string filename, std::string mask_filename, std::ve
       //Load from img
       //std::cout<<"Image with filename "<<filename<<" has dims WxHxC="<<std::get<0>(dims)<<"x"<<std::get<1>(dims)<<"x"<<std::get<2>(dims)<<"\n";
       result = loadFromImg(filename, mask_filename, kernel_size, std::get<0>(dims), std::get<1>(dims), std::get<2>(dims), 0);//, kernel_size, 0,0,0);
-      std::cout<<"loaded img\n";
+      //std::cout<<"loaded img\n";
       return result;
     } else { //For csvs
       //Same code as ranger repo that I forked this from. So it should still work for csvs.
@@ -413,7 +413,7 @@ bool Data::loadFromImg(std::string img_path, std::string mask_path, size_t kerne
   } else { //Load mask
     int mask_width, mask_height, mask_channels;
     uint8_t *img_mask = stbi_load(mask_path.c_str(), &mask_width, &mask_height, &mask_channels, 0);
-    std::cout<<"Img mask has filename="<<mask_path<<" and WxHxC="<<mask_width<<"x"<<mask_height<<"x"<<mask_channels<<"\n";
+    //std::cout<<"Img mask has filename="<<mask_path<<" and WxHxC="<<mask_width<<"x"<<mask_height<<"x"<<mask_channels<<"\n";
 
     //Catch STB errors
     if (img_mask == NULL)
@@ -449,14 +449,14 @@ bool Data::loadFromImg(std::string img_path, std::string mask_path, size_t kerne
       }
     }
     stbi_image_free(img_mask);
-    std::cout<<"freed mask\n";
+    //std::cout<<"freed mask\n";
   }
   //Set x for img
   int width_load, height_load, channels_load;
   //Load img with STB
   uint8_t *img = stbi_load(img_path.c_str(), &width_load, &height_load, &channels_load, 0);
   //TODO: check if dims match?
-  std::cout<<"WxHxC="<<width_load<<"x"<<height_load<<"x"<<channels_load<<"\n";
+  //std::cout<<"WxHxC="<<width_load<<"x"<<height_load<<"x"<<channels_load<<"\n";
   size_t row = row_start;
   bool error = false;
   int max_offset = std::floor(kernel_size/2);
@@ -498,9 +498,9 @@ bool Data::loadFromImg(std::string img_path, std::string mask_path, size_t kerne
     }
   }
   num_rows = row;
-  std::cout<<"about to free img\n";
+  //std::cout<<"about to free img\n";
   stbi_image_free(img);
-  std::cout<<"freed img\n";
+  //std::cout<<"freed img\n";
   return false;
 }
 

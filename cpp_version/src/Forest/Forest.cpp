@@ -91,7 +91,6 @@ void Forest::initCpp(std::string dependent_variable_name, MemoryMode memory_mode
       min_node_size, prediction_mode, sample_with_replacement, unordered_variable_names, memory_saving_splitting,
       splitrule, predict_all, sample_fraction_vector, alpha, minprop, holdout, prediction_type, num_random_splits,
       false, max_depth, regularization_factor, regularization_usedepth);
-  std::cout<<"called init in forest.cpp\n";
   if (prediction_mode) {
     loadFromFile(load_forest_filename);
   }
@@ -289,7 +288,6 @@ void Forest::init(std::unique_ptr<Data> input_data, uint mtry, std::string outpu
 }
 
 void Forest::run(bool verbose, bool compute_oob_error) {
-  std::cout<<"in forest run method\n";
   if (prediction_mode) {
     if (verbose && verbose_out) {
       *verbose_out << "Predicting .." << std::endl;
@@ -299,9 +297,7 @@ void Forest::run(bool verbose, bool compute_oob_error) {
     if (verbose && verbose_out) {
       *verbose_out << "Growing trees .." << std::endl;
     }
-    std::cout<<"about to grow in forest run method\n";
     grow();
-    std::cout<<"about to compute prediction error\n";
     if (verbose && verbose_out) {
       *verbose_out << "Computing prediction error .." << std::endl;
     }
@@ -456,12 +452,9 @@ void Forest::saveToFile() {
 void Forest::grow() {
 
   // Create thread ranges
-  std::cout<<"about to do equalsplit\n";
   equalSplit(thread_ranges, 0, num_trees - 1, num_threads);
-  std::cout<<"about to do growinternal\n";
   // Call special grow functions of subclasses. There trees must be created.
   growInternal();
-  std::cout<<"about to create trees\n";
   // Init trees, create a seed for each tree, based on main seed
   std::uniform_int_distribution<uint> udist;
   for (size_t i = 0; i < num_trees; ++i) {
@@ -493,7 +486,6 @@ void Forest::grow() {
         tree_manual_inbag, keep_inbag, &sample_fraction, alpha, minprop, holdout, num_random_splits, max_depth,
         &regularization_factor, regularization_usedepth, &split_varIDs_used);
   }
-  std::cout<<"init variable importance\n";
   // Init variable importance
   variable_importance.resize(num_independent_variables, 0);
 
@@ -510,9 +502,7 @@ void Forest::grow() {
   }
   // #nocov end
 #else
-  std::cout<<"setting progress \n";
   progress = 0;
-  std::cout<<"set progress \n";
 #ifdef R_BUILD
   aborted = false;
   aborted_threads = 0;
@@ -520,21 +510,15 @@ void Forest::grow() {
 
   std::vector<std::thread> threads;
   threads.reserve(num_threads);
-  std::cout<<"init variable importance per thread\n";
   // Initialize importance per thread
   std::vector<std::vector<double>> variable_importance_threads(num_threads);
-  std::cout<<"created vec of threads\n";
   for (uint i = 0; i < num_threads; ++i) {
-    std::cout<<"importance_mode="<<importance_mode<<"\n";
     if (importance_mode == IMP_GINI || importance_mode == IMP_GINI_CORRECTED) {
       variable_importance_threads[i].resize(num_independent_variables, 0);
     }
     threads.emplace_back(&Forest::growTreesInThread, this, i, &(variable_importance_threads[i]));
   }
-  std::cout<<"about to grow trees\n";
-  std::cout<<"num_trees="<<num_trees<<"\n";
   showProgress("Growing trees..", num_trees);
-  std::cout<<"about to join threads\n";
   for (auto &thread : threads) {
     thread.join();
   }
@@ -544,7 +528,6 @@ void Forest::grow() {
     throw std::runtime_error("User interrupt.");
   }
 #endif
-  std::cout<<"sum thread importances\n";
   // Sum thread importances
   if (importance_mode == IMP_GINI || importance_mode == IMP_GINI_CORRECTED) {
     variable_importance.resize(num_independent_variables, 0);
@@ -557,7 +540,6 @@ void Forest::grow() {
   }
 
 #endif
-  std::cout<<"divide by num trees\n";
   // Divide importance by number of trees
   if (importance_mode == IMP_GINI || importance_mode == IMP_GINI_CORRECTED) {
     for (auto& v : variable_importance) {
@@ -1064,7 +1046,6 @@ void Forest::showProgress(std::string operation, clock_t start_time, clock_t& la
 // #nocov end
 #else
 void Forest::showProgress(std::string operation, size_t max_progress) {
-  std::cout<<"in showprogress\n";
   using std::chrono::steady_clock;
   using std::chrono::duration_cast;
   using std::chrono::seconds;
