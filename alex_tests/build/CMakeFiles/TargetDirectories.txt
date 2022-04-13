@@ -1,0 +1,3 @@
+/Users/alexmeredith/ranger/alex_tests/build/CMakeFiles/build_training_set.dir
+/Users/alexmeredith/ranger/alex_tests/build/CMakeFiles/edit_cache.dir
+/Users/alexmeredith/ranger/alex_tests/build/CMakeFiles/rebuild_cache.dir

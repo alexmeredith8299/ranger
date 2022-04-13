@@ -15,4 +15,5 @@ Memory mode:                       0
 Seed:                              0
 Number of threads:                 8
 
+Saved predictions to file ranger_out.prediction.
 Finished Ranger.

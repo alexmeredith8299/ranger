@@ -753,6 +753,7 @@ void ArgumentHandler::displayHelp() {
   std::cout << "    " << "                              MODE = 0: double." << std::endl;
   std::cout << "    " << "                              MODE = 1: float." << std::endl;
   std::cout << "    " << "                              MODE = 2: char." << std::endl;
+  std::cout << "    " << "                              MODE = 3: int." << std::endl;
   std::cout << "    " << "                              (Default: 0)" << std::endl;
   std::cout << "    " << "--savemem                     Use memory saving (but slower) splitting mode." << std::endl;
   std::cout << std::endl;

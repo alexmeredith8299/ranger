@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++  -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk -mmacosx-version-min=12.2 -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib CMakeFiles/build_training_set.dir/src/main.cpp.o -o build_training_set 

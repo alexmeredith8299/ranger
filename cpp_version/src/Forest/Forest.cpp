@@ -25,6 +25,7 @@
 #include "DataChar.h"
 #include "DataDouble.h"
 #include "DataFloat.h"
+#include "DataInt.h"
 
 namespace ranger {
 
@@ -932,6 +933,9 @@ std::unique_ptr<Data> Forest::loadDataFromFile(const std::string& data_path, con
     break;
   case MEM_CHAR:
     result = make_unique_ranger<DataChar>();
+    break;
+  case MEM_INT:
+    result = make_unique_ranger<DataInt>();
     break;
   }
 

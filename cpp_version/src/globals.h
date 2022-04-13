@@ -41,9 +41,10 @@ enum TreeType {
 enum MemoryMode {
   MEM_DOUBLE = 0,
   MEM_FLOAT = 1,
-  MEM_CHAR = 2
+  MEM_CHAR = 2,
+  MEM_INT = 3
 };
-const uint MAX_MEM_MODE = 2;
+const uint MAX_MEM_MODE = 3;
 
 // Mask and Offset to store 2 bit values in bytes
 static const int mask[4] = {192,48,12,3};

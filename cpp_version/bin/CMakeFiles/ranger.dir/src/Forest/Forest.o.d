@@ -441,4 +441,5 @@ CMakeFiles/ranger.dir/src/Forest/Forest.o: \
   /Users/alexmeredith/ranger/cpp_version/src/Tree/Tree.h \
   /Users/alexmeredith/ranger/cpp_version/src/utility/DataChar.h \
   /Users/alexmeredith/ranger/cpp_version/src/utility/DataDouble.h \
-  /Users/alexmeredith/ranger/cpp_version/src/utility/DataFloat.h
+  /Users/alexmeredith/ranger/cpp_version/src/utility/DataFloat.h \
+  /Users/alexmeredith/ranger/cpp_version/src/utility/DataInt.h
