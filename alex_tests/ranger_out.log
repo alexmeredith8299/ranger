@@ -14,7 +14,7 @@ Number of independent variables:   27
 Mtry:                              5
 Target node size:                  10
 Variable importance mode:          0
-Memory mode:                       3
+Memory mode:                       2
 Seed:                              0
 Number of threads:                 8
 
