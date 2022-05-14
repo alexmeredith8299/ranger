@@ -1,7 +1,5 @@
 Starting Ranger.
-Initializing forest.
 Loading input file: rf_test_to_csv.csv.
-Calling forest.run()
 Growing trees ..
 Computing prediction error ..
 Saved forest to file ranger_out.forest.
