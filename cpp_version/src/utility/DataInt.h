@@ -65,8 +65,8 @@ public:
   }
 
 private:
-  std::vector<int> x;
-  std::vector<int> y;
+  std::vector<uint32_t> x;
+  std::vector<uint32_t> y;
 };
 
 } // namespace ranger
