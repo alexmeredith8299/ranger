@@ -1,6 +1,6 @@
 Starting Ranger.
 Initializing forest.
-Loading input file: samples/IMG_F9F8D255E10E-1.jpeg.
+Loading input file: rf_test_to_csv.csv.
 Calling forest.run()
 Growing trees ..
 Computing prediction error ..
@@ -14,11 +14,11 @@ Number of independent variables:   27
 Mtry:                              5
 Target node size:                  10
 Variable importance mode:          0
-Memory mode:                       1
+Memory mode:                       3
 Seed:                              0
 Number of threads:                 8
 
-Overall OOB prediction error:      0.000314954
+Overall OOB prediction error:      0
 
 Saved prediction error to file ranger_out.confusion.
 Finished Ranger.
