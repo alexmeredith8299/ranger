@@ -31,11 +31,11 @@ namespace ranger {
 
 Forest::Forest() :
     verbose_out(0), num_trees(DEFAULT_NUM_TREE), mtry(0), min_node_size(0), num_independent_variables(0), seed(0), num_samples(
-        0), prediction_mode(false), memory_mode(MEM_DOUBLE), sample_with_replacement(true), memory_saving_splitting(
+        0), prediction_mode(false), memory_mode(MEM_INT), sample_with_replacement(true), memory_saving_splitting(
         false), splitrule(DEFAULT_SPLITRULE), predict_all(false), keep_inbag(false), sample_fraction( { 1 }), holdout(
         false), prediction_type(DEFAULT_PREDICTIONTYPE), num_random_splits(DEFAULT_NUM_RANDOM_SPLITS), max_depth(
-        DEFAULT_MAXDEPTH), alpha(DEFAULT_ALPHA), minprop(DEFAULT_MINPROP), num_threads(DEFAULT_NUM_THREADS), data { }, overall_prediction_error(
-    NAN), importance_mode(DEFAULT_IMPORTANCE_MODE), regularization_usedepth(false), progress(0), kernelsize(3) {
+        DEFAULT_MAXDEPTH), alpha(DEFAULT_ALPHA), minprop(DEFAULT_MINPROP), num_threads(DEFAULT_NUM_THREADS), data { }, kernelsize(3), overall_prediction_error(
+    NAN), importance_mode(DEFAULT_IMPORTANCE_MODE), regularization_usedepth(false),  progress(0) {
 }
 
 // #nocov start
@@ -49,15 +49,22 @@ void Forest::initCpp(std::string dependent_variable_name, MemoryMode memory_mode
     PredictionType prediction_type, uint num_random_splits, uint max_depth,
     const std::vector<double>& regularization_factor, bool regularization_usedepth,
     bool write_to_img, size_t img_width, size_t img_height, bool batch_data, size_t kernelsize) {
-
+  std::cout<<"in initCpp"<<std::endl;
+  std::cout<<"write_to_img"<<write_to_img<<std::endl;
+  //std::cout<<"write_to_img1"<<write_to_img==1<<std::endl;
+  std::cout<<"wrote image width"<<std::endl;
   this->write_to_img = write_to_img;
+  std::cout<<"did write2img"<<std::endl;
   this->img_width = img_width;
   this->img_height = img_height;
+  std::cout<<"did imgdims"<<std::endl;
   this->batch_data = batch_data;
   this->kernelsize = kernelsize;
+  std::cout<<"did kernelsize"<<std::endl;
 
   this->memory_mode = memory_mode;
   this->verbose_out = verbose_out;
+  std::cout<<"did memmode and verbout"<<std::endl;
 
   if (!dependent_variable_name.empty()) {
     if (status_variable_name.empty()) {
@@ -86,7 +93,7 @@ void Forest::initCpp(std::string dependent_variable_name, MemoryMode memory_mode
   if (prediction_mode) {
     loadDependentVariableNamesFromFile(load_forest_filename);
   }
-
+  std::cout<<"about to call other init fn"<<std::endl;
   // Call other init function
   init(loadDataFromFile(input_file, evaluation_file, batch_data, kernelsize), mtry, output_prefix, num_trees, seed, num_threads, importance_mode,
       min_node_size, prediction_mode, sample_with_replacement, unordered_variable_names, memory_saving_splitting,

@@ -26,8 +26,10 @@
 using namespace ranger;
 
 void run_ranger(const ArgumentHandler& arg_handler, std::ostream& verbose_out) {
-  verbose_out << "Starting Ranger." << std::endl;
-
+  verbose_out << "Starting Ranger. Hello!" << std::endl;
+  verbose_out <<"Treetype is "<<arg_handler.treetype<<std::endl;
+  verbose_out<<TREE_CLASSIFICATION<<std::endl;
+  
   // Create forest object
   std::unique_ptr<Forest> forest { };
   switch (arg_handler.treetype) {
@@ -48,7 +50,7 @@ void run_ranger(const ArgumentHandler& arg_handler, std::ostream& verbose_out) {
     forest = make_unique_ranger<ForestProbability>();
     break;
   }
-
+  verbose_out<<"About to initialize forest" <<std::endl;
   // Call Ranger
   forest->initCpp(arg_handler.depvarname, arg_handler.memmode, arg_handler.file, arg_handler.mask, arg_handler.mtry,
       arg_handler.outprefix, arg_handler.ntree, &verbose_out, arg_handler.seed, arg_handler.nthreads,
