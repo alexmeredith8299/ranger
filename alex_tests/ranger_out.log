@@ -1,7 +1,10 @@
 Starting Ranger.
+Initializing forest.
 Loading input file: samples/IMG_F9F8D255E10E-1.jpeg.
-Loading forest from file ranger_out.forest.
-Predicting ..
+Calling forest.run()
+Growing trees ..
+Computing prediction error ..
+Saved forest to file ranger_out.forest.
 
 Tree type:                         Probability estimation
 Dependent variable name:           CLOUD
@@ -11,9 +14,11 @@ Number of independent variables:   27
 Mtry:                              5
 Target node size:                  10
 Variable importance mode:          0
-Memory mode:                       0
+Memory mode:                       1
 Seed:                              0
 Number of threads:                 8
 
-Saved predictions to file ranger_out.prediction.
+Overall OOB prediction error:      0.000314954
+
+Saved prediction error to file ranger_out.confusion.
 Finished Ranger.

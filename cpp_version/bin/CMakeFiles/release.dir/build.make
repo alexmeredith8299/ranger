@@ -44,10 +44,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/local/Cellar/cmake/3.23.0/bin/cmake
+CMAKE_COMMAND = /usr/local/Cellar/cmake/3.23.1/bin/cmake
 
 # The command to remove a file.
-RM = /usr/local/Cellar/cmake/3.23.0/bin/cmake -E rm -f
+RM = /usr/local/Cellar/cmake/3.23.1/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -68,8 +68,8 @@ include CMakeFiles/release.dir/progress.make
 
 CMakeFiles/release:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Switch CMAKE_BUILD_TYPE to Release"
-	/usr/local/Cellar/cmake/3.23.0/bin/cmake -DCMAKE_BUILD_TYPE=Release /Users/alexmeredith/ranger/cpp_version
-	/usr/local/Cellar/cmake/3.23.0/bin/cmake --build /Users/alexmeredith/ranger/cpp_version/bin --target all
+	/usr/local/Cellar/cmake/3.23.1/bin/cmake -DCMAKE_BUILD_TYPE=Release /Users/alexmeredith/ranger/cpp_version
+	/usr/local/Cellar/cmake/3.23.1/bin/cmake --build /Users/alexmeredith/ranger/cpp_version/bin --target all
 
 release: CMakeFiles/release
 release: CMakeFiles/release.dir/build.make

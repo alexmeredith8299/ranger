@@ -44,10 +44,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/local/Cellar/cmake/3.23.0/bin/cmake
+CMAKE_COMMAND = /usr/local/Cellar/cmake/3.23.1/bin/cmake
 
 # The command to remove a file.
-RM = /usr/local/Cellar/cmake/3.23.0/bin/cmake -E rm -f
+RM = /usr/local/Cellar/cmake/3.23.1/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -73,197 +73,197 @@ CMakeFiles/ranger.dir/src/Forest/Forest.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/Forest/Forest.o: ../src/Forest/Forest.cpp
 CMakeFiles/ranger.dir/src/Forest/Forest.o: CMakeFiles/ranger.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ranger.dir/src/Forest/Forest.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/Forest/Forest.o -MF CMakeFiles/ranger.dir/src/Forest/Forest.o.d -o CMakeFiles/ranger.dir/src/Forest/Forest.o -c /Users/alexmeredith/ranger/cpp_version/src/Forest/Forest.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/Forest/Forest.o -MF CMakeFiles/ranger.dir/src/Forest/Forest.o.d -o CMakeFiles/ranger.dir/src/Forest/Forest.o -c /Users/alexmeredith/ranger/cpp_version/src/Forest/Forest.cpp
 
 CMakeFiles/ranger.dir/src/Forest/Forest.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ranger.dir/src/Forest/Forest.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/Forest/Forest.cpp > CMakeFiles/ranger.dir/src/Forest/Forest.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/Forest/Forest.cpp > CMakeFiles/ranger.dir/src/Forest/Forest.i
 
 CMakeFiles/ranger.dir/src/Forest/Forest.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ranger.dir/src/Forest/Forest.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/Forest/Forest.cpp -o CMakeFiles/ranger.dir/src/Forest/Forest.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/Forest/Forest.cpp -o CMakeFiles/ranger.dir/src/Forest/Forest.s
 
 CMakeFiles/ranger.dir/src/Forest/ForestClassification.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/Forest/ForestClassification.o: ../src/Forest/ForestClassification.cpp
 CMakeFiles/ranger.dir/src/Forest/ForestClassification.o: CMakeFiles/ranger.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ranger.dir/src/Forest/ForestClassification.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/Forest/ForestClassification.o -MF CMakeFiles/ranger.dir/src/Forest/ForestClassification.o.d -o CMakeFiles/ranger.dir/src/Forest/ForestClassification.o -c /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestClassification.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/Forest/ForestClassification.o -MF CMakeFiles/ranger.dir/src/Forest/ForestClassification.o.d -o CMakeFiles/ranger.dir/src/Forest/ForestClassification.o -c /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestClassification.cpp
 
 CMakeFiles/ranger.dir/src/Forest/ForestClassification.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ranger.dir/src/Forest/ForestClassification.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestClassification.cpp > CMakeFiles/ranger.dir/src/Forest/ForestClassification.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestClassification.cpp > CMakeFiles/ranger.dir/src/Forest/ForestClassification.i
 
 CMakeFiles/ranger.dir/src/Forest/ForestClassification.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ranger.dir/src/Forest/ForestClassification.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestClassification.cpp -o CMakeFiles/ranger.dir/src/Forest/ForestClassification.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestClassification.cpp -o CMakeFiles/ranger.dir/src/Forest/ForestClassification.s
 
 CMakeFiles/ranger.dir/src/Forest/ForestProbability.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/Forest/ForestProbability.o: ../src/Forest/ForestProbability.cpp
 CMakeFiles/ranger.dir/src/Forest/ForestProbability.o: CMakeFiles/ranger.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ranger.dir/src/Forest/ForestProbability.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/Forest/ForestProbability.o -MF CMakeFiles/ranger.dir/src/Forest/ForestProbability.o.d -o CMakeFiles/ranger.dir/src/Forest/ForestProbability.o -c /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestProbability.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/Forest/ForestProbability.o -MF CMakeFiles/ranger.dir/src/Forest/ForestProbability.o.d -o CMakeFiles/ranger.dir/src/Forest/ForestProbability.o -c /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestProbability.cpp
 
 CMakeFiles/ranger.dir/src/Forest/ForestProbability.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ranger.dir/src/Forest/ForestProbability.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestProbability.cpp > CMakeFiles/ranger.dir/src/Forest/ForestProbability.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestProbability.cpp > CMakeFiles/ranger.dir/src/Forest/ForestProbability.i
 
 CMakeFiles/ranger.dir/src/Forest/ForestProbability.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ranger.dir/src/Forest/ForestProbability.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestProbability.cpp -o CMakeFiles/ranger.dir/src/Forest/ForestProbability.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestProbability.cpp -o CMakeFiles/ranger.dir/src/Forest/ForestProbability.s
 
 CMakeFiles/ranger.dir/src/Forest/ForestRegression.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/Forest/ForestRegression.o: ../src/Forest/ForestRegression.cpp
 CMakeFiles/ranger.dir/src/Forest/ForestRegression.o: CMakeFiles/ranger.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ranger.dir/src/Forest/ForestRegression.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/Forest/ForestRegression.o -MF CMakeFiles/ranger.dir/src/Forest/ForestRegression.o.d -o CMakeFiles/ranger.dir/src/Forest/ForestRegression.o -c /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestRegression.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/Forest/ForestRegression.o -MF CMakeFiles/ranger.dir/src/Forest/ForestRegression.o.d -o CMakeFiles/ranger.dir/src/Forest/ForestRegression.o -c /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestRegression.cpp
 
 CMakeFiles/ranger.dir/src/Forest/ForestRegression.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ranger.dir/src/Forest/ForestRegression.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestRegression.cpp > CMakeFiles/ranger.dir/src/Forest/ForestRegression.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestRegression.cpp > CMakeFiles/ranger.dir/src/Forest/ForestRegression.i
 
 CMakeFiles/ranger.dir/src/Forest/ForestRegression.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ranger.dir/src/Forest/ForestRegression.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestRegression.cpp -o CMakeFiles/ranger.dir/src/Forest/ForestRegression.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestRegression.cpp -o CMakeFiles/ranger.dir/src/Forest/ForestRegression.s
 
 CMakeFiles/ranger.dir/src/Forest/ForestSurvival.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/Forest/ForestSurvival.o: ../src/Forest/ForestSurvival.cpp
 CMakeFiles/ranger.dir/src/Forest/ForestSurvival.o: CMakeFiles/ranger.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ranger.dir/src/Forest/ForestSurvival.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/Forest/ForestSurvival.o -MF CMakeFiles/ranger.dir/src/Forest/ForestSurvival.o.d -o CMakeFiles/ranger.dir/src/Forest/ForestSurvival.o -c /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestSurvival.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/Forest/ForestSurvival.o -MF CMakeFiles/ranger.dir/src/Forest/ForestSurvival.o.d -o CMakeFiles/ranger.dir/src/Forest/ForestSurvival.o -c /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestSurvival.cpp
 
 CMakeFiles/ranger.dir/src/Forest/ForestSurvival.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ranger.dir/src/Forest/ForestSurvival.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestSurvival.cpp > CMakeFiles/ranger.dir/src/Forest/ForestSurvival.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestSurvival.cpp > CMakeFiles/ranger.dir/src/Forest/ForestSurvival.i
 
 CMakeFiles/ranger.dir/src/Forest/ForestSurvival.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ranger.dir/src/Forest/ForestSurvival.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestSurvival.cpp -o CMakeFiles/ranger.dir/src/Forest/ForestSurvival.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/Forest/ForestSurvival.cpp -o CMakeFiles/ranger.dir/src/Forest/ForestSurvival.s
 
 CMakeFiles/ranger.dir/src/Tree/Tree.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/Tree/Tree.o: ../src/Tree/Tree.cpp
 CMakeFiles/ranger.dir/src/Tree/Tree.o: CMakeFiles/ranger.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ranger.dir/src/Tree/Tree.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/Tree/Tree.o -MF CMakeFiles/ranger.dir/src/Tree/Tree.o.d -o CMakeFiles/ranger.dir/src/Tree/Tree.o -c /Users/alexmeredith/ranger/cpp_version/src/Tree/Tree.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/Tree/Tree.o -MF CMakeFiles/ranger.dir/src/Tree/Tree.o.d -o CMakeFiles/ranger.dir/src/Tree/Tree.o -c /Users/alexmeredith/ranger/cpp_version/src/Tree/Tree.cpp
 
 CMakeFiles/ranger.dir/src/Tree/Tree.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ranger.dir/src/Tree/Tree.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/Tree/Tree.cpp > CMakeFiles/ranger.dir/src/Tree/Tree.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/Tree/Tree.cpp > CMakeFiles/ranger.dir/src/Tree/Tree.i
 
 CMakeFiles/ranger.dir/src/Tree/Tree.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ranger.dir/src/Tree/Tree.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/Tree/Tree.cpp -o CMakeFiles/ranger.dir/src/Tree/Tree.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/Tree/Tree.cpp -o CMakeFiles/ranger.dir/src/Tree/Tree.s
 
 CMakeFiles/ranger.dir/src/Tree/TreeClassification.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/Tree/TreeClassification.o: ../src/Tree/TreeClassification.cpp
 CMakeFiles/ranger.dir/src/Tree/TreeClassification.o: CMakeFiles/ranger.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ranger.dir/src/Tree/TreeClassification.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/Tree/TreeClassification.o -MF CMakeFiles/ranger.dir/src/Tree/TreeClassification.o.d -o CMakeFiles/ranger.dir/src/Tree/TreeClassification.o -c /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeClassification.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/Tree/TreeClassification.o -MF CMakeFiles/ranger.dir/src/Tree/TreeClassification.o.d -o CMakeFiles/ranger.dir/src/Tree/TreeClassification.o -c /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeClassification.cpp
 
 CMakeFiles/ranger.dir/src/Tree/TreeClassification.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ranger.dir/src/Tree/TreeClassification.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeClassification.cpp > CMakeFiles/ranger.dir/src/Tree/TreeClassification.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeClassification.cpp > CMakeFiles/ranger.dir/src/Tree/TreeClassification.i
 
 CMakeFiles/ranger.dir/src/Tree/TreeClassification.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ranger.dir/src/Tree/TreeClassification.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeClassification.cpp -o CMakeFiles/ranger.dir/src/Tree/TreeClassification.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeClassification.cpp -o CMakeFiles/ranger.dir/src/Tree/TreeClassification.s
 
 CMakeFiles/ranger.dir/src/Tree/TreeProbability.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/Tree/TreeProbability.o: ../src/Tree/TreeProbability.cpp
 CMakeFiles/ranger.dir/src/Tree/TreeProbability.o: CMakeFiles/ranger.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/ranger.dir/src/Tree/TreeProbability.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/Tree/TreeProbability.o -MF CMakeFiles/ranger.dir/src/Tree/TreeProbability.o.d -o CMakeFiles/ranger.dir/src/Tree/TreeProbability.o -c /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeProbability.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/Tree/TreeProbability.o -MF CMakeFiles/ranger.dir/src/Tree/TreeProbability.o.d -o CMakeFiles/ranger.dir/src/Tree/TreeProbability.o -c /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeProbability.cpp
 
 CMakeFiles/ranger.dir/src/Tree/TreeProbability.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ranger.dir/src/Tree/TreeProbability.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeProbability.cpp > CMakeFiles/ranger.dir/src/Tree/TreeProbability.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeProbability.cpp > CMakeFiles/ranger.dir/src/Tree/TreeProbability.i
 
 CMakeFiles/ranger.dir/src/Tree/TreeProbability.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ranger.dir/src/Tree/TreeProbability.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeProbability.cpp -o CMakeFiles/ranger.dir/src/Tree/TreeProbability.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeProbability.cpp -o CMakeFiles/ranger.dir/src/Tree/TreeProbability.s
 
 CMakeFiles/ranger.dir/src/Tree/TreeRegression.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/Tree/TreeRegression.o: ../src/Tree/TreeRegression.cpp
 CMakeFiles/ranger.dir/src/Tree/TreeRegression.o: CMakeFiles/ranger.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/ranger.dir/src/Tree/TreeRegression.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/Tree/TreeRegression.o -MF CMakeFiles/ranger.dir/src/Tree/TreeRegression.o.d -o CMakeFiles/ranger.dir/src/Tree/TreeRegression.o -c /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeRegression.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/Tree/TreeRegression.o -MF CMakeFiles/ranger.dir/src/Tree/TreeRegression.o.d -o CMakeFiles/ranger.dir/src/Tree/TreeRegression.o -c /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeRegression.cpp
 
 CMakeFiles/ranger.dir/src/Tree/TreeRegression.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ranger.dir/src/Tree/TreeRegression.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeRegression.cpp > CMakeFiles/ranger.dir/src/Tree/TreeRegression.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeRegression.cpp > CMakeFiles/ranger.dir/src/Tree/TreeRegression.i
 
 CMakeFiles/ranger.dir/src/Tree/TreeRegression.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ranger.dir/src/Tree/TreeRegression.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeRegression.cpp -o CMakeFiles/ranger.dir/src/Tree/TreeRegression.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeRegression.cpp -o CMakeFiles/ranger.dir/src/Tree/TreeRegression.s
 
 CMakeFiles/ranger.dir/src/Tree/TreeSurvival.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/Tree/TreeSurvival.o: ../src/Tree/TreeSurvival.cpp
 CMakeFiles/ranger.dir/src/Tree/TreeSurvival.o: CMakeFiles/ranger.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/ranger.dir/src/Tree/TreeSurvival.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/Tree/TreeSurvival.o -MF CMakeFiles/ranger.dir/src/Tree/TreeSurvival.o.d -o CMakeFiles/ranger.dir/src/Tree/TreeSurvival.o -c /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeSurvival.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/Tree/TreeSurvival.o -MF CMakeFiles/ranger.dir/src/Tree/TreeSurvival.o.d -o CMakeFiles/ranger.dir/src/Tree/TreeSurvival.o -c /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeSurvival.cpp
 
 CMakeFiles/ranger.dir/src/Tree/TreeSurvival.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ranger.dir/src/Tree/TreeSurvival.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeSurvival.cpp > CMakeFiles/ranger.dir/src/Tree/TreeSurvival.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeSurvival.cpp > CMakeFiles/ranger.dir/src/Tree/TreeSurvival.i
 
 CMakeFiles/ranger.dir/src/Tree/TreeSurvival.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ranger.dir/src/Tree/TreeSurvival.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeSurvival.cpp -o CMakeFiles/ranger.dir/src/Tree/TreeSurvival.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/Tree/TreeSurvival.cpp -o CMakeFiles/ranger.dir/src/Tree/TreeSurvival.s
 
 CMakeFiles/ranger.dir/src/main.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/main.o: ../src/main.cpp
 CMakeFiles/ranger.dir/src/main.o: CMakeFiles/ranger.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/ranger.dir/src/main.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/main.o -MF CMakeFiles/ranger.dir/src/main.o.d -o CMakeFiles/ranger.dir/src/main.o -c /Users/alexmeredith/ranger/cpp_version/src/main.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/main.o -MF CMakeFiles/ranger.dir/src/main.o.d -o CMakeFiles/ranger.dir/src/main.o -c /Users/alexmeredith/ranger/cpp_version/src/main.cpp
 
 CMakeFiles/ranger.dir/src/main.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ranger.dir/src/main.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/main.cpp > CMakeFiles/ranger.dir/src/main.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/main.cpp > CMakeFiles/ranger.dir/src/main.i
 
 CMakeFiles/ranger.dir/src/main.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ranger.dir/src/main.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/main.cpp -o CMakeFiles/ranger.dir/src/main.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/main.cpp -o CMakeFiles/ranger.dir/src/main.s
 
 CMakeFiles/ranger.dir/src/utility/ArgumentHandler.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/utility/ArgumentHandler.o: ../src/utility/ArgumentHandler.cpp
 CMakeFiles/ranger.dir/src/utility/ArgumentHandler.o: CMakeFiles/ranger.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/ranger.dir/src/utility/ArgumentHandler.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/utility/ArgumentHandler.o -MF CMakeFiles/ranger.dir/src/utility/ArgumentHandler.o.d -o CMakeFiles/ranger.dir/src/utility/ArgumentHandler.o -c /Users/alexmeredith/ranger/cpp_version/src/utility/ArgumentHandler.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/utility/ArgumentHandler.o -MF CMakeFiles/ranger.dir/src/utility/ArgumentHandler.o.d -o CMakeFiles/ranger.dir/src/utility/ArgumentHandler.o -c /Users/alexmeredith/ranger/cpp_version/src/utility/ArgumentHandler.cpp
 
 CMakeFiles/ranger.dir/src/utility/ArgumentHandler.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ranger.dir/src/utility/ArgumentHandler.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/utility/ArgumentHandler.cpp > CMakeFiles/ranger.dir/src/utility/ArgumentHandler.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/utility/ArgumentHandler.cpp > CMakeFiles/ranger.dir/src/utility/ArgumentHandler.i
 
 CMakeFiles/ranger.dir/src/utility/ArgumentHandler.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ranger.dir/src/utility/ArgumentHandler.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/utility/ArgumentHandler.cpp -o CMakeFiles/ranger.dir/src/utility/ArgumentHandler.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/utility/ArgumentHandler.cpp -o CMakeFiles/ranger.dir/src/utility/ArgumentHandler.s
 
 CMakeFiles/ranger.dir/src/utility/Data.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/utility/Data.o: ../src/utility/Data.cpp
 CMakeFiles/ranger.dir/src/utility/Data.o: CMakeFiles/ranger.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/ranger.dir/src/utility/Data.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/utility/Data.o -MF CMakeFiles/ranger.dir/src/utility/Data.o.d -o CMakeFiles/ranger.dir/src/utility/Data.o -c /Users/alexmeredith/ranger/cpp_version/src/utility/Data.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/utility/Data.o -MF CMakeFiles/ranger.dir/src/utility/Data.o.d -o CMakeFiles/ranger.dir/src/utility/Data.o -c /Users/alexmeredith/ranger/cpp_version/src/utility/Data.cpp
 
 CMakeFiles/ranger.dir/src/utility/Data.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ranger.dir/src/utility/Data.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/utility/Data.cpp > CMakeFiles/ranger.dir/src/utility/Data.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/utility/Data.cpp > CMakeFiles/ranger.dir/src/utility/Data.i
 
 CMakeFiles/ranger.dir/src/utility/Data.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ranger.dir/src/utility/Data.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/utility/Data.cpp -o CMakeFiles/ranger.dir/src/utility/Data.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/utility/Data.cpp -o CMakeFiles/ranger.dir/src/utility/Data.s
 
 CMakeFiles/ranger.dir/src/utility/utility.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/utility/utility.o: ../src/utility/utility.cpp
 CMakeFiles/ranger.dir/src/utility/utility.o: CMakeFiles/ranger.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/ranger.dir/src/utility/utility.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/utility/utility.o -MF CMakeFiles/ranger.dir/src/utility/utility.o.d -o CMakeFiles/ranger.dir/src/utility/utility.o -c /Users/alexmeredith/ranger/cpp_version/src/utility/utility.cpp
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ranger.dir/src/utility/utility.o -MF CMakeFiles/ranger.dir/src/utility/utility.o.d -o CMakeFiles/ranger.dir/src/utility/utility.o -c /Users/alexmeredith/ranger/cpp_version/src/utility/utility.cpp
 
 CMakeFiles/ranger.dir/src/utility/utility.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ranger.dir/src/utility/utility.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/utility/utility.cpp > CMakeFiles/ranger.dir/src/utility/utility.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alexmeredith/ranger/cpp_version/src/utility/utility.cpp > CMakeFiles/ranger.dir/src/utility/utility.i
 
 CMakeFiles/ranger.dir/src/utility/utility.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ranger.dir/src/utility/utility.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/utility/utility.cpp -o CMakeFiles/ranger.dir/src/utility/utility.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alexmeredith/ranger/cpp_version/src/utility/utility.cpp -o CMakeFiles/ranger.dir/src/utility/utility.s
 
 # Object files for target ranger
 ranger_OBJECTS = \
