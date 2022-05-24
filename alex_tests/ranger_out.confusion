@@ -1,5 +1,1 @@
-Overall OOB prediction error (Fraction missclassified): nan
-
-Class specific prediction errors:
-                1
-predicted 1     0     
+Overall OOB prediction error (MSE): nan

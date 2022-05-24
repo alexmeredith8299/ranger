@@ -960,8 +960,8 @@ std::unique_ptr<Data> Forest::loadDataFromFile(const std::string& data_path, con
 
   if (verbose_out)
     *verbose_out << "Loading input file: " << data_path << "." << std::endl;
-  bool found_rounding_error = result->loadFromFile(data_path, dependent_variable_names);
-  //bool found_rounding_error = result->loadFromFileAlex(data_path, evaldata_path, dependent_variable_names, batch_data, kernel_size);
+  //bool found_rounding_error = result->loadFromFile(data_path, dependent_variable_names);
+  bool found_rounding_error = result->loadFromFileAlex(data_path, evaldata_path, dependent_variable_names, batch_data, kernel_size);
   if (found_rounding_error && verbose_out) {
     *verbose_out << "Warning: Rounding or Integer overflow occurred. Use FLOAT or DOUBLE precision to avoid this."
         << std::endl;
