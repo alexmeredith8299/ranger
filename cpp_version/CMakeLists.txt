@@ -15,7 +15,7 @@ endif()
 ## ======================================================================================##
 ## Compiler flags
 ## ======================================================================================##
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -static -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -static -std=c++11 -lrt -Wl,--whole-archive -lpthread -Wl,--no-whole-archive")
 
 ## ======================================================================================##
 ## In Clang phtread flag only for compiler, not for linker. For
