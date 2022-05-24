@@ -45,13 +45,18 @@ public:
 
   bool batchDataLoader(std::string dirpath, std::string mask_dirpath, std::vector<std::string>& dependent_variable_names,
     size_t kernel_size);
-  bool loadFromFile(std::string filename, std::string eval_filename, std::vector<std::string>& dependent_variable_names,
+  bool loadFromFile(std::string filename, std::vector<std::string>& dependent_variable_names);
+  bool loadFromFileWhitespace(std::ifstream& input_file, std::string header_line,
+      std::vector<std::string>& dependent_variable_names);
+  bool loadFromFileOther(std::ifstream& input_file, std::string header_line,
+      std::vector<std::string>& dependent_variable_names, char seperator);
+  bool loadFromFileAlex(std::string filename, std::string eval_filename, std::vector<std::string>& dependent_variable_names,
       bool batch_data, size_t kernel_size);
   bool loadFromImg(std::string img_path, std::string mask_path, size_t kernel_size, size_t width,
       size_t height, size_t channels, size_t row_start);
-  bool loadFromFileWhitespace(std::ifstream& input_file, std::string header_line,
+  bool loadFromFileWhitespaceAlex(std::ifstream& input_file, std::string header_line,
       std::vector<std::string>& dependent_variable_names, size_t row_start);
-  bool loadFromFileOther(std::ifstream& input_file, std::string header_line,
+  bool loadFromFileOtherAlex(std::ifstream& input_file, std::string header_line,
       std::vector<std::string>& dependent_variable_names, char seperator, size_t row_start);
 
   size_t getNumColsForCsv(std::ifstream& input_file, std::string header_line,

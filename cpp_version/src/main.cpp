@@ -29,6 +29,8 @@ void run_ranger(const ArgumentHandler& arg_handler, std::ostream& verbose_out) {
   verbose_out << "Starting Ranger. Hello!" << std::endl;
   verbose_out <<"Treetype is "<<arg_handler.treetype<<std::endl;
   verbose_out<<TREE_CLASSIFICATION<<std::endl;
+  verbose_out<<"Writetoimg is "<<arg_handler.writetoimg<<std::endl;
+  verbose_out<<"memmode is "<<arg_handler.memmode<<std::endl;
   
   // Create forest object
   std::unique_ptr<Forest> forest { };

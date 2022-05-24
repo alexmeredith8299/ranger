@@ -46,7 +46,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/pi/ranger/cpp_version
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/ranger/cpp_version/bin
+CMAKE_BINARY_DIR = /home/pi/ranger/cpp_version/bin-arm
 
 # Utility rule file for debug.
 
@@ -54,9 +54,9 @@ CMAKE_BINARY_DIR = /home/pi/ranger/cpp_version/bin
 include CMakeFiles/debug.dir/progress.make
 
 CMakeFiles/debug:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/pi/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Switch CMAKE_BUILD_TYPE to Debug"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/pi/ranger/cpp_version/bin-arm/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Switch CMAKE_BUILD_TYPE to Debug"
 	/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug /home/pi/ranger/cpp_version
-	/usr/bin/cmake --build /home/pi/ranger/cpp_version/bin --target all
+	/usr/bin/cmake --build /home/pi/ranger/cpp_version/bin-arm --target all
 
 debug: CMakeFiles/debug
 debug: CMakeFiles/debug.dir/build.make
@@ -73,6 +73,6 @@ CMakeFiles/debug.dir/clean:
 .PHONY : CMakeFiles/debug.dir/clean
 
 CMakeFiles/debug.dir/depend:
-	cd /home/pi/ranger/cpp_version/bin && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/ranger/cpp_version /home/pi/ranger/cpp_version /home/pi/ranger/cpp_version/bin /home/pi/ranger/cpp_version/bin /home/pi/ranger/cpp_version/bin/CMakeFiles/debug.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/pi/ranger/cpp_version/bin-arm && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/ranger/cpp_version /home/pi/ranger/cpp_version /home/pi/ranger/cpp_version/bin-arm /home/pi/ranger/cpp_version/bin-arm /home/pi/ranger/cpp_version/bin-arm/CMakeFiles/debug.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/debug.dir/depend
 

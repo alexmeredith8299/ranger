@@ -3,7 +3,7 @@
 
 # Relative path conversion top directories.
 set(CMAKE_RELATIVE_PATH_TOP_SOURCE "/home/pi/ranger/cpp_version")
-set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/pi/ranger/cpp_version/bin")
+set(CMAKE_RELATIVE_PATH_TOP_BINARY "/home/pi/ranger/cpp_version/bin-arm")
 
 # Force unix paths in dependencies.
 set(CMAKE_FORCE_UNIX_PATHS 1)

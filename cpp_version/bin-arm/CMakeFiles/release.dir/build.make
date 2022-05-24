@@ -46,7 +46,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/pi/ranger/cpp_version
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/ranger/cpp_version/bin
+CMAKE_BINARY_DIR = /home/pi/ranger/cpp_version/bin-arm
 
 # Utility rule file for release.
 
@@ -54,9 +54,9 @@ CMAKE_BINARY_DIR = /home/pi/ranger/cpp_version/bin
 include CMakeFiles/release.dir/progress.make
 
 CMakeFiles/release:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/pi/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Switch CMAKE_BUILD_TYPE to Release"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/pi/ranger/cpp_version/bin-arm/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Switch CMAKE_BUILD_TYPE to Release"
 	/usr/bin/cmake -DCMAKE_BUILD_TYPE=Release /home/pi/ranger/cpp_version
-	/usr/bin/cmake --build /home/pi/ranger/cpp_version/bin --target all
+	/usr/bin/cmake --build /home/pi/ranger/cpp_version/bin-arm --target all
 
 release: CMakeFiles/release
 release: CMakeFiles/release.dir/build.make
@@ -73,6 +73,6 @@ CMakeFiles/release.dir/clean:
 .PHONY : CMakeFiles/release.dir/clean
 
 CMakeFiles/release.dir/depend:
-	cd /home/pi/ranger/cpp_version/bin && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/ranger/cpp_version /home/pi/ranger/cpp_version /home/pi/ranger/cpp_version/bin /home/pi/ranger/cpp_version/bin /home/pi/ranger/cpp_version/bin/CMakeFiles/release.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/pi/ranger/cpp_version/bin-arm && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/ranger/cpp_version /home/pi/ranger/cpp_version /home/pi/ranger/cpp_version/bin-arm /home/pi/ranger/cpp_version/bin-arm /home/pi/ranger/cpp_version/bin-arm/CMakeFiles/release.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/release.dir/depend
 

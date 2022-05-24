@@ -46,7 +46,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/pi/ranger/cpp_version
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/ranger/cpp_version/bin
+CMAKE_BINARY_DIR = /home/pi/ranger/cpp_version/bin-arm
 
 # Include any dependencies generated for this target.
 include CMakeFiles/ranger.dir/depend.make
@@ -59,7 +59,7 @@ include CMakeFiles/ranger.dir/flags.make
 
 CMakeFiles/ranger.dir/src/Forest/Forest.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/Forest/Forest.o: ../src/Forest/Forest.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ranger.dir/src/Forest/Forest.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin-arm/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ranger.dir/src/Forest/Forest.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ranger.dir/src/Forest/Forest.o -c /home/pi/ranger/cpp_version/src/Forest/Forest.cpp
 
 CMakeFiles/ranger.dir/src/Forest/Forest.i: cmake_force
@@ -72,7 +72,7 @@ CMakeFiles/ranger.dir/src/Forest/Forest.s: cmake_force
 
 CMakeFiles/ranger.dir/src/Forest/ForestClassification.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/Forest/ForestClassification.o: ../src/Forest/ForestClassification.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ranger.dir/src/Forest/ForestClassification.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin-arm/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ranger.dir/src/Forest/ForestClassification.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ranger.dir/src/Forest/ForestClassification.o -c /home/pi/ranger/cpp_version/src/Forest/ForestClassification.cpp
 
 CMakeFiles/ranger.dir/src/Forest/ForestClassification.i: cmake_force
@@ -85,7 +85,7 @@ CMakeFiles/ranger.dir/src/Forest/ForestClassification.s: cmake_force
 
 CMakeFiles/ranger.dir/src/Forest/ForestProbability.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/Forest/ForestProbability.o: ../src/Forest/ForestProbability.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ranger.dir/src/Forest/ForestProbability.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin-arm/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ranger.dir/src/Forest/ForestProbability.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ranger.dir/src/Forest/ForestProbability.o -c /home/pi/ranger/cpp_version/src/Forest/ForestProbability.cpp
 
 CMakeFiles/ranger.dir/src/Forest/ForestProbability.i: cmake_force
@@ -98,7 +98,7 @@ CMakeFiles/ranger.dir/src/Forest/ForestProbability.s: cmake_force
 
 CMakeFiles/ranger.dir/src/Forest/ForestRegression.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/Forest/ForestRegression.o: ../src/Forest/ForestRegression.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ranger.dir/src/Forest/ForestRegression.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin-arm/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ranger.dir/src/Forest/ForestRegression.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ranger.dir/src/Forest/ForestRegression.o -c /home/pi/ranger/cpp_version/src/Forest/ForestRegression.cpp
 
 CMakeFiles/ranger.dir/src/Forest/ForestRegression.i: cmake_force
@@ -111,7 +111,7 @@ CMakeFiles/ranger.dir/src/Forest/ForestRegression.s: cmake_force
 
 CMakeFiles/ranger.dir/src/Forest/ForestSurvival.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/Forest/ForestSurvival.o: ../src/Forest/ForestSurvival.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ranger.dir/src/Forest/ForestSurvival.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin-arm/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ranger.dir/src/Forest/ForestSurvival.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ranger.dir/src/Forest/ForestSurvival.o -c /home/pi/ranger/cpp_version/src/Forest/ForestSurvival.cpp
 
 CMakeFiles/ranger.dir/src/Forest/ForestSurvival.i: cmake_force
@@ -124,7 +124,7 @@ CMakeFiles/ranger.dir/src/Forest/ForestSurvival.s: cmake_force
 
 CMakeFiles/ranger.dir/src/Tree/Tree.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/Tree/Tree.o: ../src/Tree/Tree.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ranger.dir/src/Tree/Tree.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin-arm/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ranger.dir/src/Tree/Tree.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ranger.dir/src/Tree/Tree.o -c /home/pi/ranger/cpp_version/src/Tree/Tree.cpp
 
 CMakeFiles/ranger.dir/src/Tree/Tree.i: cmake_force
@@ -137,7 +137,7 @@ CMakeFiles/ranger.dir/src/Tree/Tree.s: cmake_force
 
 CMakeFiles/ranger.dir/src/Tree/TreeClassification.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/Tree/TreeClassification.o: ../src/Tree/TreeClassification.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ranger.dir/src/Tree/TreeClassification.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin-arm/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ranger.dir/src/Tree/TreeClassification.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ranger.dir/src/Tree/TreeClassification.o -c /home/pi/ranger/cpp_version/src/Tree/TreeClassification.cpp
 
 CMakeFiles/ranger.dir/src/Tree/TreeClassification.i: cmake_force
@@ -150,7 +150,7 @@ CMakeFiles/ranger.dir/src/Tree/TreeClassification.s: cmake_force
 
 CMakeFiles/ranger.dir/src/Tree/TreeProbability.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/Tree/TreeProbability.o: ../src/Tree/TreeProbability.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/ranger.dir/src/Tree/TreeProbability.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin-arm/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/ranger.dir/src/Tree/TreeProbability.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ranger.dir/src/Tree/TreeProbability.o -c /home/pi/ranger/cpp_version/src/Tree/TreeProbability.cpp
 
 CMakeFiles/ranger.dir/src/Tree/TreeProbability.i: cmake_force
@@ -163,7 +163,7 @@ CMakeFiles/ranger.dir/src/Tree/TreeProbability.s: cmake_force
 
 CMakeFiles/ranger.dir/src/Tree/TreeRegression.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/Tree/TreeRegression.o: ../src/Tree/TreeRegression.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/ranger.dir/src/Tree/TreeRegression.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin-arm/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/ranger.dir/src/Tree/TreeRegression.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ranger.dir/src/Tree/TreeRegression.o -c /home/pi/ranger/cpp_version/src/Tree/TreeRegression.cpp
 
 CMakeFiles/ranger.dir/src/Tree/TreeRegression.i: cmake_force
@@ -176,7 +176,7 @@ CMakeFiles/ranger.dir/src/Tree/TreeRegression.s: cmake_force
 
 CMakeFiles/ranger.dir/src/Tree/TreeSurvival.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/Tree/TreeSurvival.o: ../src/Tree/TreeSurvival.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/ranger.dir/src/Tree/TreeSurvival.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin-arm/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/ranger.dir/src/Tree/TreeSurvival.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ranger.dir/src/Tree/TreeSurvival.o -c /home/pi/ranger/cpp_version/src/Tree/TreeSurvival.cpp
 
 CMakeFiles/ranger.dir/src/Tree/TreeSurvival.i: cmake_force
@@ -189,7 +189,7 @@ CMakeFiles/ranger.dir/src/Tree/TreeSurvival.s: cmake_force
 
 CMakeFiles/ranger.dir/src/main.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/main.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/ranger.dir/src/main.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin-arm/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/ranger.dir/src/main.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ranger.dir/src/main.o -c /home/pi/ranger/cpp_version/src/main.cpp
 
 CMakeFiles/ranger.dir/src/main.i: cmake_force
@@ -202,7 +202,7 @@ CMakeFiles/ranger.dir/src/main.s: cmake_force
 
 CMakeFiles/ranger.dir/src/utility/ArgumentHandler.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/utility/ArgumentHandler.o: ../src/utility/ArgumentHandler.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/ranger.dir/src/utility/ArgumentHandler.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin-arm/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/ranger.dir/src/utility/ArgumentHandler.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ranger.dir/src/utility/ArgumentHandler.o -c /home/pi/ranger/cpp_version/src/utility/ArgumentHandler.cpp
 
 CMakeFiles/ranger.dir/src/utility/ArgumentHandler.i: cmake_force
@@ -215,7 +215,7 @@ CMakeFiles/ranger.dir/src/utility/ArgumentHandler.s: cmake_force
 
 CMakeFiles/ranger.dir/src/utility/Data.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/utility/Data.o: ../src/utility/Data.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/ranger.dir/src/utility/Data.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin-arm/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/ranger.dir/src/utility/Data.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ranger.dir/src/utility/Data.o -c /home/pi/ranger/cpp_version/src/utility/Data.cpp
 
 CMakeFiles/ranger.dir/src/utility/Data.i: cmake_force
@@ -228,7 +228,7 @@ CMakeFiles/ranger.dir/src/utility/Data.s: cmake_force
 
 CMakeFiles/ranger.dir/src/utility/utility.o: CMakeFiles/ranger.dir/flags.make
 CMakeFiles/ranger.dir/src/utility/utility.o: ../src/utility/utility.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/ranger.dir/src/utility/utility.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/ranger/cpp_version/bin-arm/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/ranger.dir/src/utility/utility.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ranger.dir/src/utility/utility.o -c /home/pi/ranger/cpp_version/src/utility/utility.cpp
 
 CMakeFiles/ranger.dir/src/utility/utility.i: cmake_force
@@ -275,7 +275,7 @@ ranger: CMakeFiles/ranger.dir/src/utility/Data.o
 ranger: CMakeFiles/ranger.dir/src/utility/utility.o
 ranger: CMakeFiles/ranger.dir/build.make
 ranger: CMakeFiles/ranger.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable ranger"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/ranger/cpp_version/bin-arm/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable ranger"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ranger.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -288,6 +288,6 @@ CMakeFiles/ranger.dir/clean:
 .PHONY : CMakeFiles/ranger.dir/clean
 
 CMakeFiles/ranger.dir/depend:
-	cd /home/pi/ranger/cpp_version/bin && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/ranger/cpp_version /home/pi/ranger/cpp_version /home/pi/ranger/cpp_version/bin /home/pi/ranger/cpp_version/bin /home/pi/ranger/cpp_version/bin/CMakeFiles/ranger.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/pi/ranger/cpp_version/bin-arm && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pi/ranger/cpp_version /home/pi/ranger/cpp_version /home/pi/ranger/cpp_version/bin-arm /home/pi/ranger/cpp_version/bin-arm /home/pi/ranger/cpp_version/bin-arm/CMakeFiles/ranger.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/ranger.dir/depend
 

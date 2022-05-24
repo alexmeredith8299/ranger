@@ -99,6 +99,7 @@ void Forest::initCpp(std::string dependent_variable_name, MemoryMode memory_mode
       min_node_size, prediction_mode, sample_with_replacement, unordered_variable_names, memory_saving_splitting,
       splitrule, predict_all, sample_fraction_vector, alpha, minprop, holdout, prediction_type, num_random_splits,
       false, max_depth, regularization_factor, regularization_usedepth);
+  std::cout<<"called other init fn"<<std::endl;
   if (prediction_mode) {
     loadFromFile(load_forest_filename);
   }
@@ -462,7 +463,9 @@ void Forest::grow() {
   // Create thread ranges
   equalSplit(thread_ranges, 0, num_trees - 1, num_threads);
   // Call special grow functions of subclasses. There trees must be created.
+  std::cout<<"about to do growinternal"<<std::endl;
   growInternal();
+  std::cout<<"did growinternal"<<std::endl;
   // Init trees, create a seed for each tree, based on main seed
   std::uniform_int_distribution<uint> udist;
   for (size_t i = 0; i < num_trees; ++i) {
@@ -495,7 +498,9 @@ void Forest::grow() {
         &regularization_factor, regularization_usedepth, &split_varIDs_used);
   }
   // Init variable importance
+  std::cout<<"about to init var importance"<<std::endl;
   variable_importance.resize(num_independent_variables, 0);
+  std::cout<<"resized var importance"<<std::endl;
 
   // Grow trees in multiple threads
 #ifdef OLD_WIN_R_BUILD
@@ -517,19 +522,26 @@ void Forest::grow() {
 #endif
 
   std::vector<std::thread> threads;
+  std::cout<<"about to reserve threads"<<std::endl;
   threads.reserve(num_threads);
+  std::cout<<"reserved threads"<<std::endl;
   // Initialize importance per thread
   std::vector<std::vector<double>> variable_importance_threads(num_threads);
   for (uint i = 0; i < num_threads; ++i) {
+    std::cout<<"importance mode is "<<importance_mode<<std::endl;
     if (importance_mode == IMP_GINI || importance_mode == IMP_GINI_CORRECTED) {
       variable_importance_threads[i].resize(num_independent_variables, 0);
     }
     threads.emplace_back(&Forest::growTreesInThread, this, i, &(variable_importance_threads[i]));
+    //std::cout<<"emplaced thread "<<i<<" out of "<<num_threads<<std::endl;
   }
+  //std::cout<<"about to say we r growing trees"<<std::endl;
   showProgress("Growing trees..", num_trees);
+  std::cout<<"about to join threads"<<std::endl;
   for (auto &thread : threads) {
     thread.join();
   }
+  std::cout<<"joined threads"<<std::endl;
 
 #ifdef R_BUILD
   if (aborted_threads > 0) {
@@ -948,7 +960,8 @@ std::unique_ptr<Data> Forest::loadDataFromFile(const std::string& data_path, con
 
   if (verbose_out)
     *verbose_out << "Loading input file: " << data_path << "." << std::endl;
-  bool found_rounding_error = result->loadFromFile(data_path, evaldata_path, dependent_variable_names, batch_data, kernel_size);
+  bool found_rounding_error = result->loadFromFile(data_path, dependent_variable_names);
+  //bool found_rounding_error = result->loadFromFileAlex(data_path, evaldata_path, dependent_variable_names, batch_data, kernel_size);
   if (found_rounding_error && verbose_out) {
     *verbose_out << "Warning: Rounding or Integer overflow occurred. Use FLOAT or DOUBLE precision to avoid this."
         << std::endl;
@@ -1057,6 +1070,7 @@ void Forest::showProgress(std::string operation, clock_t start_time, clock_t& la
 // #nocov end
 #else
 void Forest::showProgress(std::string operation, size_t max_progress) {
+  std::cout<<"in showprogress"<<std::endl;
   using std::chrono::steady_clock;
   using std::chrono::duration_cast;
   using std::chrono::seconds;
@@ -1067,11 +1081,11 @@ void Forest::showProgress(std::string operation, size_t max_progress) {
 
   // Wait for message from threads and show output if enough time elapsed
   while (progress < max_progress) {
-    //std::cout<<"progress="<<progress<<", max_progress="<<max_progress<<"\n";
+    std::cout<<"progress="<<progress<<", max_progress="<<max_progress<<"\n";
     condition_variable.wait(lock);
-    //std::cout<<"acquired lock \n";
+    std::cout<<"acquired lock \n";
     seconds elapsed_time = duration_cast<seconds>(steady_clock::now() - last_time);
-    //std::cout<<"got elapsed time\n";
+    std::cout<<"got elapsed time\n";
 
     // Check for user interrupt
 #ifdef R_BUILD

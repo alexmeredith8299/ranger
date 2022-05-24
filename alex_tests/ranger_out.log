@@ -1,0 +1,22 @@
+Starting Ranger.
+Loading input file: test.csv.
+Growing trees ..
+Computing prediction error ..
+Saved forest to file ranger_out.forest.
+
+Tree type:                         Classification
+Dependent variable name:           CLOUD
+Number of trees:                   500
+Sample size:                       1
+Number of independent variables:   2
+Mtry:                              1
+Target node size:                  1
+Variable importance mode:          0
+Memory mode:                       0
+Seed:                              0
+Number of threads:                 4
+
+Overall OOB prediction error:      nan
+
+Saved confusion matrix to file ranger_out.confusion.
+Finished Ranger.

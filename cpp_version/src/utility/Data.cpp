@@ -192,15 +192,15 @@ bool Data::batchDataLoader(std::string dirpath, std::string mask_dirpath, std::v
               size_t n_cols = 0;
               bool result;
               if (header_line.find(',') != std::string::npos) {
-                result = loadFromFileOther(input_file, header_line, dependent_variable_names, ',', row);
+                result = loadFromFileOtherAlex(input_file, header_line, dependent_variable_names, ',', row);
                 row = num_rows;
                 num_rows = total_rows;
               } else if (header_line.find(';') != std::string::npos) {
-                result = loadFromFileOther(input_file, header_line, dependent_variable_names, ';', row);
+                result = loadFromFileOtherAlex(input_file, header_line, dependent_variable_names, ';', row);
                 row = num_rows;
                 num_rows = total_rows;
               } else {
-                result = loadFromFileWhitespace(input_file, header_line, dependent_variable_names, row);
+                result = loadFromFileWhitespaceAlex(input_file, header_line, dependent_variable_names, row);
                 row = num_rows;
                 num_rows = total_rows;
               }
@@ -225,7 +225,47 @@ bool Data::batchDataLoader(std::string dirpath, std::string mask_dirpath, std::v
 }
 
 // #nocov start
-bool Data::loadFromFile(std::string filename, std::string mask_filename, std::vector<std::string>& dependent_variable_names,
+bool Data::loadFromFile(std::string filename, std::vector<std::string>& dependent_variable_names) {
+
+  bool result;
+
+  // Open input file
+  std::ifstream input_file;
+  input_file.open(filename);
+  if (!input_file.good()) {
+    throw std::runtime_error("Could not open input file.");
+  }
+
+  // Count number of rows
+  size_t line_count = 0;
+  std::string line;
+  while (getline(input_file, line)) {
+    ++line_count;
+  }
+  num_rows = line_count - 1;
+  input_file.close();
+  input_file.open(filename);
+
+  // Check if comma, semicolon or whitespace seperated
+  std::string header_line;
+  getline(input_file, header_line);
+
+  // Find out if comma, semicolon or whitespace seperated and call appropriate method
+  if (header_line.find(',') != std::string::npos) {
+    result = loadFromFileOther(input_file, header_line, dependent_variable_names, ',');
+  } else if (header_line.find(';') != std::string::npos) {
+    result = loadFromFileOther(input_file, header_line, dependent_variable_names, ';');
+  } else {
+    result = loadFromFileWhitespace(input_file, header_line, dependent_variable_names);
+  }
+
+  externalData = false;
+  input_file.close();
+  return result;
+}
+
+// #nocov start
+bool Data::loadFromFileAlex(std::string filename, std::string mask_filename, std::vector<std::string>& dependent_variable_names,
     bool batch_data, size_t kernel_size) {
 
   bool result;
@@ -284,15 +324,15 @@ bool Data::loadFromFile(std::string filename, std::string mask_filename, std::ve
       if (header_line.find(',') != std::string::npos) {
         num_cols = getNumColsForCsv(input_file, header_line, dependent_variable_names, ',', false);
         reserveMemory(num_dependent_variables);
-        result = loadFromFileOther(input_file, header_line, dependent_variable_names, ',', 0);
+        result = loadFromFileOtherAlex(input_file, header_line, dependent_variable_names, ',', 0);
       } else if (header_line.find(';') != std::string::npos) {
         num_cols = getNumColsForCsv(input_file, header_line, dependent_variable_names, ';', false);
         reserveMemory(num_dependent_variables);
-        result = loadFromFileOther(input_file, header_line, dependent_variable_names, ';', 0);
+        result = loadFromFileOtherAlex(input_file, header_line, dependent_variable_names, ';', 0);
       } else {
         num_cols = getNumColsForCsv(input_file, header_line, dependent_variable_names, ';', true);
         reserveMemory(num_dependent_variables);
-        result = loadFromFileWhitespace(input_file, header_line, dependent_variable_names, 0);
+        result = loadFromFileWhitespaceAlex(input_file, header_line, dependent_variable_names, 0);
       }
       externalData = false;
       input_file.close();
@@ -301,7 +341,7 @@ bool Data::loadFromFile(std::string filename, std::string mask_filename, std::ve
   }
 }
 
-bool Data::loadFromFileWhitespace(std::ifstream& input_file, std::string header_line,
+bool Data::loadFromFileWhitespaceAlex(std::ifstream& input_file, std::string header_line,
     std::vector<std::string>& dependent_variable_names, size_t row_start) {
   size_t num_dependent_variables = dependent_variable_names.size();
   std::vector<size_t> dependent_varIDs;
@@ -571,7 +611,139 @@ size_t Data::getNumColsForCsv(std::ifstream& input_file, std::string header_line
   return n_cols;
 }
 
+bool Data::loadFromFileWhitespace(std::ifstream& input_file, std::string header_line,
+    std::vector<std::string>& dependent_variable_names) {
+
+  size_t num_dependent_variables = dependent_variable_names.size();
+  std::vector<size_t> dependent_varIDs;
+  dependent_varIDs.resize(num_dependent_variables);
+
+  // Read header
+  std::string header_token;
+  std::stringstream header_line_stream(header_line);
+  size_t col = 0;
+  while (header_line_stream >> header_token) {
+    bool is_dependent_var = false;
+    for (size_t i = 0; i < dependent_variable_names.size(); ++i) {
+      if (header_token == dependent_variable_names[i]) {
+        dependent_varIDs[i] = col;
+        is_dependent_var = true;
+      }
+    }
+    if (!is_dependent_var) {
+      variable_names.push_back(header_token);
+    }
+    ++col;
+  }
+
+  num_cols = variable_names.size();
+  num_cols_no_snp = num_cols;
+
+  // Read body
+  reserveMemory(num_dependent_variables);
+  bool error = false;
+  std::string line;
+  size_t row = 0;
+  while (getline(input_file, line)) {
+    double token;
+    std::stringstream line_stream(line);
+    size_t column = 0;
+    while (readFromStream(line_stream, token)) {
+      size_t column_x = column;
+      bool is_dependent_var = false;
+      for (size_t i = 0; i < dependent_varIDs.size(); ++i) {
+        if (column == dependent_varIDs[i]) {
+          set_y(i, row, token, error);
+          is_dependent_var = true;
+          break;
+        } else if (column > dependent_varIDs[i]) {
+          --column_x;
+        }
+      }
+      if (!is_dependent_var) {
+        set_x(column_x, row, token, error);
+      }
+      ++column;
+    }
+    if (column > (num_cols + num_dependent_variables)) {
+      throw std::runtime_error(
+          std::string("Could not open input file. Too many columns in row ") + std::to_string(row) + std::string("."));
+    } else if (column < (num_cols + num_dependent_variables)) {
+      throw std::runtime_error(
+          std::string("Could not open input file. Too few columns in row ") + std::to_string(row)
+              + std::string(". Are all values numeric?"));
+    }
+    ++row;
+  }
+  num_rows = row;
+  return error;
+}
+
 bool Data::loadFromFileOther(std::ifstream& input_file, std::string header_line,
+    std::vector<std::string>& dependent_variable_names, char seperator) {
+
+  size_t num_dependent_variables = dependent_variable_names.size();
+  std::vector<size_t> dependent_varIDs;
+  dependent_varIDs.resize(num_dependent_variables);
+
+  // Read header
+  std::string header_token;
+  std::stringstream header_line_stream(header_line);
+  size_t col = 0;
+  while (getline(header_line_stream, header_token, seperator)) {
+    bool is_dependent_var = false;
+    for (size_t i = 0; i < dependent_variable_names.size(); ++i) {
+      if (header_token == dependent_variable_names[i]) {
+        dependent_varIDs[i] = col;
+        is_dependent_var = true;
+      }
+    }
+    if (!is_dependent_var) {
+      variable_names.push_back(header_token);
+    }
+    ++col;
+  }
+
+  num_cols = variable_names.size();
+  num_cols_no_snp = num_cols;
+
+  // Read body
+  reserveMemory(num_dependent_variables);
+  bool error = false;
+  std::string line;
+  size_t row = 0;
+  while (getline(input_file, line)) {
+    std::string token_string;
+    double token;
+    std::stringstream line_stream(line);
+    size_t column = 0;
+    while (getline(line_stream, token_string, seperator)) {
+      std::stringstream token_stream(token_string);
+      readFromStream(token_stream, token);
+
+      size_t column_x = column;
+      bool is_dependent_var = false;
+      for (size_t i = 0; i < dependent_varIDs.size(); ++i) {
+        if (column == dependent_varIDs[i]) {
+          set_y(i, row, token, error);
+          is_dependent_var = true;
+          break;
+        } else if (column > dependent_varIDs[i]) {
+          --column_x;
+        }
+      }
+      if (!is_dependent_var) {
+        set_x(column_x, row, token, error);
+      }
+      ++column;
+    }
+    ++row;
+  }
+  num_rows = row;
+  return error;
+}
+
+bool Data::loadFromFileOtherAlex(std::ifstream& input_file, std::string header_line,
     std::vector<std::string>& dependent_variable_names, char seperator, size_t row_start) {
   size_t num_dependent_variables = dependent_variable_names.size();
   std::vector<size_t> dependent_varIDs;
