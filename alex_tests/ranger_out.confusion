@@ -1,10 +1,1 @@
-<<<<<<< HEAD
-Overall OOB prediction error (Fraction missclassified): 0.000127008
-
-Class specific prediction errors:
-                0     1
-predicted 0     32733622    
-predicted 1     23    26927 
-=======
-Overall OOB prediction error (MSE): 9.39539e-05
->>>>>>> d18733621b7bc4e1a57c01aab06ba7efa9c5c1bf
+Overall OOB prediction error (MSE): 0.000167042
