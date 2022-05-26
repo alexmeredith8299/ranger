@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/local/Cellar/cmake/3.23.0/bin/cmake
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = /usr/local/Cellar/cmake/3.23.0/bin/cmake -E rm -f
+RM = /usr/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/alexmeredith/ranger/cpp_version
+CMAKE_SOURCE_DIR = /home/alex/ranger/cpp_version
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/alexmeredith/ranger/cpp_version/bin
+CMAKE_BINARY_DIR = /home/alex/ranger/cpp_version/bin
 
 # Utility rule file for release.
 
@@ -67,9 +67,9 @@ include CMakeFiles/release.dir/compiler_depend.make
 include CMakeFiles/release.dir/progress.make
 
 CMakeFiles/release:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Switch CMAKE_BUILD_TYPE to Release"
-	/usr/local/Cellar/cmake/3.23.0/bin/cmake -DCMAKE_BUILD_TYPE=Release /Users/alexmeredith/ranger/cpp_version
-	/usr/local/Cellar/cmake/3.23.0/bin/cmake --build /Users/alexmeredith/ranger/cpp_version/bin --target all
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/alex/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Switch CMAKE_BUILD_TYPE to Release"
+	/usr/bin/cmake -DCMAKE_BUILD_TYPE=Release /home/alex/ranger/cpp_version
+	/usr/bin/cmake --build /home/alex/ranger/cpp_version/bin --target all
 
 release: CMakeFiles/release
 release: CMakeFiles/release.dir/build.make
@@ -84,6 +84,6 @@ CMakeFiles/release.dir/clean:
 .PHONY : CMakeFiles/release.dir/clean
 
 CMakeFiles/release.dir/depend:
-	cd /Users/alexmeredith/ranger/cpp_version/bin && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/alexmeredith/ranger/cpp_version /Users/alexmeredith/ranger/cpp_version /Users/alexmeredith/ranger/cpp_version/bin /Users/alexmeredith/ranger/cpp_version/bin /Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles/release.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/alex/ranger/cpp_version/bin && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/alex/ranger/cpp_version /home/alex/ranger/cpp_version /home/alex/ranger/cpp_version/bin /home/alex/ranger/cpp_version/bin /home/alex/ranger/cpp_version/bin/CMakeFiles/release.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/release.dir/depend
 

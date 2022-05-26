@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/local/Cellar/cmake/3.23.0/bin/cmake
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = /usr/local/Cellar/cmake/3.23.0/bin/cmake -E rm -f
+RM = /usr/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/alexmeredith/ranger/cpp_version
+CMAKE_SOURCE_DIR = /home/alex/ranger/cpp_version
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/alexmeredith/ranger/cpp_version/bin
+CMAKE_BINARY_DIR = /home/alex/ranger/cpp_version/bin
 
 # Utility rule file for debug.
 
@@ -67,9 +67,9 @@ include CMakeFiles/debug.dir/compiler_depend.make
 include CMakeFiles/debug.dir/progress.make
 
 CMakeFiles/debug:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Switch CMAKE_BUILD_TYPE to Debug"
-	/usr/local/Cellar/cmake/3.23.0/bin/cmake -DCMAKE_BUILD_TYPE=Debug /Users/alexmeredith/ranger/cpp_version
-	/usr/local/Cellar/cmake/3.23.0/bin/cmake --build /Users/alexmeredith/ranger/cpp_version/bin --target all
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/alex/ranger/cpp_version/bin/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Switch CMAKE_BUILD_TYPE to Debug"
+	/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug /home/alex/ranger/cpp_version
+	/usr/bin/cmake --build /home/alex/ranger/cpp_version/bin --target all
 
 debug: CMakeFiles/debug
 debug: CMakeFiles/debug.dir/build.make
@@ -84,6 +84,6 @@ CMakeFiles/debug.dir/clean:
 .PHONY : CMakeFiles/debug.dir/clean
 
 CMakeFiles/debug.dir/depend:
-	cd /Users/alexmeredith/ranger/cpp_version/bin && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/alexmeredith/ranger/cpp_version /Users/alexmeredith/ranger/cpp_version /Users/alexmeredith/ranger/cpp_version/bin /Users/alexmeredith/ranger/cpp_version/bin /Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles/debug.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/alex/ranger/cpp_version/bin && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/alex/ranger/cpp_version /home/alex/ranger/cpp_version /home/alex/ranger/cpp_version/bin /home/alex/ranger/cpp_version/bin /home/alex/ranger/cpp_version/bin/CMakeFiles/debug.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/debug.dir/depend
 

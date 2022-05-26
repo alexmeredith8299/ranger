@@ -1,5 +1,5 @@
-/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles/debug.dir
-/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles/release.dir
-/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles/ranger.dir
-/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles/edit_cache.dir
-/Users/alexmeredith/ranger/cpp_version/bin/CMakeFiles/rebuild_cache.dir
+/home/alex/ranger/cpp_version/bin/CMakeFiles/debug.dir
+/home/alex/ranger/cpp_version/bin/CMakeFiles/release.dir
+/home/alex/ranger/cpp_version/bin/CMakeFiles/ranger.dir
+/home/alex/ranger/cpp_version/bin/CMakeFiles/edit_cache.dir
+/home/alex/ranger/cpp_version/bin/CMakeFiles/rebuild_cache.dir

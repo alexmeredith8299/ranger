@@ -1,1 +1,6 @@
-Overall OOB prediction error (MSE): 0.048904
+Overall OOB prediction error (Fraction missclassified): 0.000127008
+
+Class specific prediction errors:
+                0     1
+predicted 0     32733622    
+predicted 1     23    26927 

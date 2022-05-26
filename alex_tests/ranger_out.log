@@ -3,17 +3,16 @@ Loading input file: samples/IMG_F9F8D255E10E-1.jpeg.
 Loading forest from file ranger_out.forest.
 Predicting ..
 
-Tree type:                         Probability estimation
+Tree type:                         Classification
 Dependent variable name:           CLOUD
 Number of trees:                   10
 Sample size:                       357962
 Number of independent variables:   27
 Mtry:                              5
-Target node size:                  10
+Target node size:                  1
 Variable importance mode:          0
 Memory mode:                       0
 Seed:                              0
-Number of threads:                 8
+Number of threads:                 4
 
-Saved predictions to file ranger_out.prediction.
 Finished Ranger.
