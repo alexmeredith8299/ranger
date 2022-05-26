@@ -29,7 +29,7 @@ ArgumentHandler::ArgumentHandler(int argc, char **argv) :
         DEFAULT_NUM_THREADS), predall(false), alpha(DEFAULT_ALPHA), minprop(DEFAULT_MINPROP), maxdepth(
         DEFAULT_MAXDEPTH), file(""), mask(""), impmeasure(DEFAULT_IMPORTANCE_MODE), targetpartitionsize(0), mtry(0), outprefix(
         "ranger_out"), probability(false), splitrule(DEFAULT_SPLITRULE), statusvarname(""), ntree(DEFAULT_NUM_TREE), replace(
-        true), verbose(false), write(false), treetype(TREE_CLASSIFICATION), seed(0), usedepth(false) {
+        true), verbose(false), writetoimg(false), write(false), treetype(TREE_CLASSIFICATION), seed(0), usedepth(false), imgwidth(0), imgheight(0) {
   this->argc = argc;
   this->argv = argv;
 }

@@ -1,0 +1,5 @@
+/home/pi/ranger/cpp_version/bin-arm/CMakeFiles/rebuild_cache.dir
+/home/pi/ranger/cpp_version/bin-arm/CMakeFiles/edit_cache.dir
+/home/pi/ranger/cpp_version/bin-arm/CMakeFiles/ranger.dir
+/home/pi/ranger/cpp_version/bin-arm/CMakeFiles/debug.dir
+/home/pi/ranger/cpp_version/bin-arm/CMakeFiles/release.dir

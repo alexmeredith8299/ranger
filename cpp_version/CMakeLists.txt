@@ -1,6 +1,13 @@
 project(ranger)
 cmake_minimum_required(VERSION 2.0)
+set(CMAKE_SYSTEM_NAME Linux)
 
+set(CMAKE_SYSTEM_PROCESSOR arm)
+
+
+SET(CMAKE_C_COMPILER "/usr/bin/arm-linux-gnueabihf-gcc-7")
+
+SET(CMAKE_CXX_COMPILER "/usr/bin/arm-linux-gnueabihf-g++-7")
 ## ======================================================================================##
 ## Check for C++11. For GCC this is >=4.7
 ## ======================================================================================##
@@ -15,9 +22,9 @@ endif()
 ## ======================================================================================##
 ## Compiler flags
 ## ======================================================================================##
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++11")
-add_compile_options(-Wall -static -O0  -funsafe-math-optimizations)
 #add_compile_options(-Wall -static -O0 -march=armv7-a -mfpu=neon-vfpv4 -funsafe-math-optimizations)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -static -std=c++11 -lrt -Wl,--whole-archive -lpthread -Wl,--no-whole-archive")
+add_compile_options(-Wall -static -O0  -funsafe-math-optimizations)
 
 ## ======================================================================================##
 ## In Clang phtread flag only for compiler, not for linker. For
