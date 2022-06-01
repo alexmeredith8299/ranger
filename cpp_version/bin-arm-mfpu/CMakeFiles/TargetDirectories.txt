@@ -1,0 +1,5 @@
+/home/alex/ranger/cpp_version/bin-arm-mfpu/CMakeFiles/debug.dir
+/home/alex/ranger/cpp_version/bin-arm-mfpu/CMakeFiles/release.dir
+/home/alex/ranger/cpp_version/bin-arm-mfpu/CMakeFiles/ranger.dir
+/home/alex/ranger/cpp_version/bin-arm-mfpu/CMakeFiles/edit_cache.dir
+/home/alex/ranger/cpp_version/bin-arm-mfpu/CMakeFiles/rebuild_cache.dir
