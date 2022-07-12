@@ -1,0 +1,25 @@
+Starting Ranger. Hello!
+Treetype is 9
+1
+Writetoimg is 1
+memmode is 0
+About to initialize forest
+Initializing forest.
+Loading input file: samples/img_msec_1651278782370_2_thumbnail.jpeg.
+Loading forest from file ranger_out.forest.
+Calling forest.run()
+Predicting ..
+
+Tree type:                         Probability estimation
+Dependent variable name:           CLOUD
+Number of trees:                   10
+Sample size:                       357962
+Number of independent variables:   27
+Mtry:                              5
+Target node size:                  10
+Variable importance mode:          0
+Memory mode:                       0
+Seed:                              0
+Number of threads:                 4
+
+Finished Ranger.
