@@ -49,22 +49,22 @@ void Forest::initCpp(std::string dependent_variable_name, MemoryMode memory_mode
     PredictionType prediction_type, uint num_random_splits, uint max_depth,
     const std::vector<double>& regularization_factor, bool regularization_usedepth,
     bool write_to_img, size_t img_width, size_t img_height, bool batch_data, size_t kernelsize) {
-  std::cout<<"in initCpp"<<std::endl;
-  std::cout<<"write_to_img"<<write_to_img<<std::endl;
+  //std::cout<<"in initCpp"<<std::endl;
+  //std::cout<<"write_to_img"<<write_to_img<<std::endl;
   //std::cout<<"write_to_img1"<<write_to_img==1<<std::endl;
-  std::cout<<"wrote image width"<<std::endl;
+  //std::cout<<"wrote image width"<<std::endl;
   this->write_to_img = write_to_img;
-  std::cout<<"did write2img"<<std::endl;
+  //std::cout<<"did write2img"<<std::endl;
   this->img_width = img_width;
   this->img_height = img_height;
-  std::cout<<"did imgdims"<<std::endl;
+  //std::cout<<"did imgdims"<<std::endl;
   this->batch_data = batch_data;
   this->kernelsize = kernelsize;
-  std::cout<<"did kernelsize"<<std::endl;
+  //std::cout<<"did kernelsize"<<std::endl;
 
   this->memory_mode = memory_mode;
   this->verbose_out = verbose_out;
-  std::cout<<"did memmode and verbout"<<std::endl;
+  //std::cout<<"did memmode and verbout"<<std::endl;
 
   if (!dependent_variable_name.empty()) {
     if (status_variable_name.empty()) {
@@ -93,13 +93,13 @@ void Forest::initCpp(std::string dependent_variable_name, MemoryMode memory_mode
   if (prediction_mode) {
     loadDependentVariableNamesFromFile(load_forest_filename);
   }
-  std::cout<<"about to call other init fn"<<std::endl;
+  //std::cout<<"about to call other init fn"<<std::endl;
   // Call other init function
   init(loadDataFromFile(input_file, evaluation_file, batch_data, kernelsize), mtry, output_prefix, num_trees, seed, num_threads, importance_mode,
       min_node_size, prediction_mode, sample_with_replacement, unordered_variable_names, memory_saving_splitting,
       splitrule, predict_all, sample_fraction_vector, alpha, minprop, holdout, prediction_type, num_random_splits,
       false, max_depth, regularization_factor, regularization_usedepth);
-  std::cout<<"called other init fn"<<std::endl;
+  //std::cout<<"called other init fn"<<std::endl;
   if (prediction_mode) {
     loadFromFile(load_forest_filename);
   }
@@ -463,9 +463,9 @@ void Forest::grow() {
   // Create thread ranges
   equalSplit(thread_ranges, 0, num_trees - 1, num_threads);
   // Call special grow functions of subclasses. There trees must be created.
-  std::cout<<"about to do growinternal"<<std::endl;
+  //std::cout<<"about to do growinternal"<<std::endl;
   growInternal();
-  std::cout<<"did growinternal"<<std::endl;
+  //std::cout<<"did growinternal"<<std::endl;
   // Init trees, create a seed for each tree, based on main seed
   std::uniform_int_distribution<uint> udist;
   for (size_t i = 0; i < num_trees; ++i) {
@@ -498,9 +498,9 @@ void Forest::grow() {
         &regularization_factor, regularization_usedepth, &split_varIDs_used);
   }
   // Init variable importance
-  std::cout<<"about to init var importance"<<std::endl;
+  //std::cout<<"about to init var importance"<<std::endl;
   variable_importance.resize(num_independent_variables, 0);
-  std::cout<<"resized var importance"<<std::endl;
+  //std::cout<<"resized var importance"<<std::endl;
 
   // Grow trees in multiple threads
 #ifdef OLD_WIN_R_BUILD
@@ -522,13 +522,13 @@ void Forest::grow() {
 #endif
 
   std::vector<std::thread> threads;
-  std::cout<<"about to reserve threads"<<std::endl;
+  //std::cout<<"about to reserve threads"<<std::endl;
   threads.reserve(num_threads);
-  std::cout<<"reserved threads"<<std::endl;
+  //std::cout<<"reserved threads"<<std::endl;
   // Initialize importance per thread
   std::vector<std::vector<double>> variable_importance_threads(num_threads);
   for (uint i = 0; i < num_threads; ++i) {
-    std::cout<<"importance mode is "<<importance_mode<<std::endl;
+    //std::cout<<"importance mode is "<<importance_mode<<std::endl;
     if (importance_mode == IMP_GINI || importance_mode == IMP_GINI_CORRECTED) {
       variable_importance_threads[i].resize(num_independent_variables, 0);
     }
@@ -537,11 +537,11 @@ void Forest::grow() {
   }
   //std::cout<<"about to say we r growing trees"<<std::endl;
   showProgress("Growing trees..", num_trees);
-  std::cout<<"about to join threads"<<std::endl;
+  //std::cout<<"about to join threads"<<std::endl;
   for (auto &thread : threads) {
     thread.join();
   }
-  std::cout<<"joined threads"<<std::endl;
+  //std::cout<<"joined threads"<<std::endl;
 
 #ifdef R_BUILD
   if (aborted_threads > 0) {
@@ -1070,7 +1070,7 @@ void Forest::showProgress(std::string operation, clock_t start_time, clock_t& la
 // #nocov end
 #else
 void Forest::showProgress(std::string operation, size_t max_progress) {
-  std::cout<<"in showprogress"<<std::endl;
+  //std::cout<<"in showprogress"<<std::endl;
   using std::chrono::steady_clock;
   using std::chrono::duration_cast;
   using std::chrono::seconds;
@@ -1081,11 +1081,11 @@ void Forest::showProgress(std::string operation, size_t max_progress) {
 
   // Wait for message from threads and show output if enough time elapsed
   while (progress < max_progress) {
-    std::cout<<"progress="<<progress<<", max_progress="<<max_progress<<"\n";
+    //std::cout<<"progress="<<progress<<", max_progress="<<max_progress<<"\n";
     condition_variable.wait(lock);
-    std::cout<<"acquired lock \n";
+    //std::cout<<"acquired lock \n";
     seconds elapsed_time = duration_cast<seconds>(steady_clock::now() - last_time);
-    std::cout<<"got elapsed time\n";
+    //std::cout<<"got elapsed time\n";
 
     // Check for user interrupt
 #ifdef R_BUILD

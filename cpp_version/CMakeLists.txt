@@ -22,7 +22,7 @@ endif()
 ## ======================================================================================##
 ## Compiler flags
 ## ======================================================================================##
-#add_compile_options(-Wall -static -O0 -march=armv7-a -mfpu=neon-vfpv4 -funsafe-math-optimizations)
+#add_compile_options(-Wall -static -O0 -funsafe-math-optimizations)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -static -std=c++11 -lrt -Wl,--whole-archive -lpthread -Wl,--no-whole-archive")
 add_compile_options(-Wall -static -O0  -funsafe-math-optimizations -march=armv7-a -mfpu=neon-vfpv4)
 
